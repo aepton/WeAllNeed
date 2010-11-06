@@ -1,4 +1,4 @@
-/* @override http://localhost:8888/weallneed/boilerplate/css/style.css?v=2 */
+/* @override http://localhost:8888/weallneed/media/css/style.css?v=2 */
 /* 
   HTML5 ✰ Boilerplate 
   
@@ -226,9 +226,14 @@ button {  width: auto; overflow: visible; }
  */
 #container {}
 
-#main {width: 55%; max-width: 480px; height: 100%; position: relative;float: left;}
-#quotelist {min-height: 480px;padding: 10px; border-right: 1px dashed gray; -webkit-box-shadow: 5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: 5px 0 5px rgba(50,50,50,.2); box-shadow: 5px 0 5px rgba(50,50,50,.2);}
-#quotelist article {padding: 10px; margin: 10px; background: #efefef; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); border-radius: 5px; -moz-border-radius: 5px;}
+#main {width: 55%; max-width: 480px; height: 100%; position: relative;float: left;-webkit-box-shadow: 5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: 5px 0 5px rgba(50,50,50,.2); box-shadow: 5px 0 5px rgba(50,50,50,.2);}
+#tagcloud {height: 2em; width: 100%;background: rgba(50,50,50,.6); display: block; -webkit-transition: height 0.4s; -moz-transition: height 0.4s; transition: height 0.4s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; }
+#tagcloud:hover, #tagcloud:focus, #tagcloud:active, #tagcloud:target {height: 300px; opacity: 1;}
+#tagcloud ul {display: block;}
+#tagcloud li {list-style: none; float: left; margin: 0 .2em;}
+#quotelist {min-height: 480px;border-right: 1px dashed gray; font-size: 2em;}
+#quotelist article {padding: 10px; background: #efefef; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s;}
+#quotelist article:target, #quotelist article:focus, #quotelist article:active {height: 4em;}
 
 #side {min-width: 45%; max-width: 100%; height: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
 
