@@ -226,11 +226,11 @@ button {  width: auto; overflow: visible; }
  */
 #container {}
 
-#main {width: 55%; height: 100%; position: relative;float: left;}
+#main {width: 55%; max-width: 480px; height: 100%; position: relative;float: left;}
 #quotelist {min-height: 480px;padding: 10px; border-right: 1px dashed gray; -webkit-box-shadow: 5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: 5px 0 5px rgba(50,50,50,.2); box-shadow: 5px 0 5px rgba(50,50,50,.2);}
 #quotelist article {padding: 10px; margin: 10px; background: #efefef; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); border-radius: 5px; -moz-border-radius: 5px;}
 
-#side {width: 45%; float: left;}
+#side {min-width: 45%; max-width: 100%; height: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
 
 
 
