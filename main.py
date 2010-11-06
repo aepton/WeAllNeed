@@ -1,40 +1,17 @@
-import logging, os, sys
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
 
-# Google App Engine imports.
-from google.appengine.ext.webapp import util
+class MainPage(webapp.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.out.write('Hello, webapp World!')
 
-# Force Django to reload its settings.
-from django.conf import settings
-settings._target = None
-
-# Must set this env var before importing any part of Django
-# 'project' is the name of the project created with django-admin.py
-os.environ['DJANGO_SETTINGS_MODULE'] = 'tenderneeds.settings'
-
-import logging
-import django.core.handlers.wsgi
-import django.core.signals
-import django.db
-import django.dispatch.dispatcher
-
-def log_exception(*args, **kwds):
-    logging.exception('Exception in request:')
-
-# Log errors.
-django.dispatch.dispatcher.connect(
-    log_exception, django.core.signals.got_request_exception)
-
-# Unregister the rollback event handler.
-django.dispatch.dispatcher.disconnect(
-    django.db._rollback_on_exception,
-    django.core.signals.got_request_exception)
+application = webapp.WSGIApplication(
+                                     [('/', MainPage)],
+                                     debug=True)
 
 def main():
-    # Create a Django application for WSGI.
-    application = django.core.handlers.wsgi.WSGIHandler()
+    run_wsgi_app(application)
 
-    # Run the WSGI CGI handler with that application.
-    util.run_wsgi_app(application)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
