@@ -1,5 +1,7 @@
 import os
 
+PROJECT_ROOT = os.path.dirname(__file__)
+
 # 'project' refers to the name of the module created with django-admin.py
 ROOT_URLCONF = 'tenderneeds.urls'
 

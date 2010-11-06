@@ -8,4 +8,4 @@ handlers:
   static_dir: static
 
 - url: /.*
-  script: tenderneeds.py
+  script: main.py
