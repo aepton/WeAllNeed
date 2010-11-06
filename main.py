@@ -1,10 +1,15 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
+import os
 
 class MainPage(webapp.RequestHandler):
     def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('Hello, webapp World!')
+        self.response.headers['Content-Type'] = 'text/html'
+        FH = open('static/index.html')
+        lines = FH.readlines()
+        FH.close()
+        for line in lines:
+            self.response.out.write(line)
 
 application = webapp.WSGIApplication(
                                      [('/', MainPage)],
