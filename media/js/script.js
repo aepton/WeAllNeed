@@ -11,3 +11,5 @@ $('article').click(function(){
 	var id = $(this).attr('id');
 	window.location.hash=id;
 });
+
+
