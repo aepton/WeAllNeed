@@ -103,6 +103,10 @@ function getLatestQuotes() {
 					//return false;
 				});
 				
+				$('.infobox').click(function(){
+					$(this).toggle(.001, 'normal');
+				});
+				
 				$("#quotelist").append(article);
 				console.log(article);
 			}
