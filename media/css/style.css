@@ -152,12 +152,16 @@ IE7 */
  */
 #container {height: 100%; position: relative; overflow: hidden;}
 
+#main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px dashed gray; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
+
 header#banner {background: #ccc;}
 header#banner h1 {font-size: 3em; font-family: 'Droid Sans', arial, serif;}
 header#banner h2 {margin: -.5em .3em;}
 header#banner nav li {float: right; margin: 0 1em; cursor: pointer;}
 
-#main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px dashed gray; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
+#qNav li {float: left; width: 50%; text-align: center; display: block;}
+#qNav li:nth-of-type(even) {background: #1DB8B0;}
+#qNav li:nth-of-type(odd) {background: #7887BE;}
 
 #tagcloud {width: 100%;background: rgba(50,50,50,.6);  -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden; display: none;}
 #tagcloud:focus, #tagcloud:active, #tagcloud:target, #tagcloud.selected {background: rgba(50,50,50,.9);}
