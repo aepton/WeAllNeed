@@ -6,7 +6,6 @@ from django.utils import simplejson
 import datetime
 import time
 import operator
-import json
 
 class QuoteObject(db.Model):
     quote_text = db.StringProperty(multiline=True)
@@ -232,7 +231,7 @@ class JSON (webapp.RequestHandler):
             self.response.out.write(self.request.get("callback")+"(")
         for result in results:
             json_out.append(self.to_dict(result))
-        resp = json.dumps(json_out, separators=(',',':'))
+        resp = simplejson.dumps(json_out, separators=(',',':'))
         self.response.out.write(resp)
 #        self.response.out.write('[')
 #        for out in json_out[:-1]:

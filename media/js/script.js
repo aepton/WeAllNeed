@@ -81,7 +81,7 @@ $(document).ready(function() {
 
 function getLatestQuotes() {
 	$.ajax({
-		url: '/quotes',
+		url: 'http://tenderneeds.appspot.com/quotes',
 		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
@@ -98,6 +98,9 @@ function getLatestQuotes() {
 					article.addClass(tag);
 				});
 				article.append(quote.quote_text);
+				
+				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
+				
 				$("#quotelist").append(article);
 				console.log(article);
 			}
