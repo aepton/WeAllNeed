@@ -2,7 +2,6 @@
 
 */
 function init () {
-	$("#quotelist").css('overflow','auto').jScrollPane();
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
