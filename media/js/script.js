@@ -57,8 +57,11 @@ $(document).ready(function() {
 	var svg = n$("#map").add("svg:svg");
 	var map = po.map()
 	    .container($n(svg))
-		.add(po.interact()).add(po.compass().pan("none"))
-		.add(po.hash());
+		.center({lat:37.7818, lon:-122.4154})
+		.zoom(16)
+		.zoomRange([15,18])
+		.add(po.interact()).add(po.compass().pan("none"));
+		// map.add(po.hash());
 	
 	map.add(po.geoJson()
 		.url(base_json_url + "surrounding_area.json")
@@ -81,7 +84,7 @@ $(document).ready(function() {
 
 function getLatestQuotes() {
 	$.ajax({
-		url: '/quotes',
+		url: 'http://tenderneeds.appspot.com/quotes',
 		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
@@ -98,6 +101,9 @@ function getLatestQuotes() {
 					article.addClass(tag);
 				});
 				article.append(quote.quote_text);
+				
+				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
+				
 				$("#quotelist").append(article);
 				console.log(article);
 			}

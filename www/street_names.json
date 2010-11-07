@@ -2,8 +2,6 @@
 "type": "FeatureCollection",
 "features": [
 
-{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Market", "rotate":"-45"}, "geometry": { "type": "Point", "coordinates": [ -122.4132, 37.77985 ] } },
-
 { "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Geary", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41963, 37.785835 ] } },
 
 { "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"O'Farrell", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41944, 37.784907 ] } },
@@ -20,7 +18,11 @@
 
 { "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Grove", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41811, 37.77845 ] } },
 
-{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Hayes", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41792, 37.777455 ] } }
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Hayes", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41792, 37.777455 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Market", "rotate":"-45"}, "geometry": { "type": "Point", "coordinates": [ -122.41735, 37.7766 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"", "rotate":"80.6"}, "geometry": { "type": "Point", "coordinates": [ -122.41963, 37.785835 ] } }
 
 
 

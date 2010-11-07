@@ -29,9 +29,13 @@ $(function(){
 	var svg = n$("#map").add("svg:svg");
 	var map = po.map()
 	    .container($n(svg))
+		.center({lat:37.7818, lon:-122.4154})
+		.zoom(16)
+		.zoomRange([15,18])
 		// .container(document.body.appendChild(po.svg("svg")))
-		.add(po.interact()).add(po.compass().pan("none"))
-		.add(po.hash());
+		.add(po.interact()).add(po.compass().pan("none"));
+		// map.add(po.hash());
+		
 		// .add(po.image()
 		// .url(po.url("http://{S}tile.cloudmade.com"
 		// + "/1a1b06b230af4efdbb989ea99e9841af"
@@ -40,12 +44,12 @@ $(function(){
 		
 		
 	map.add(po.geoJson()
-		.url("surrounding_area.geojson")
+		.url("surrounding_area.json")
 		.id("surrounding")
 		.tile(false));
 
 	map.add(po.geoJson()
-		.url("TL_blocks3.geojson")
+		.url("tenderloin.json")
 		.id("tenderloin")
 		.tile(false));
 
@@ -74,7 +78,7 @@ $(function(){
 	    // .attr("stdDeviation", 3);
 	
 	function load(e) {
-		var fontSize = .7 * Math.pow(2, e.tile.zoom - 12);
+		var fontSize = .6 * Math.pow(2, e.tile.zoom - 12);
 		console.info(fontSize);
 		for (var i = 0; i < e.features.length; i++) {
 			var c = n$(e.features[i].element),
@@ -162,7 +166,7 @@ svg {
 .street-names {
 	fill:#000;
 	fill-opacity:1;
-	font-family:Helvetica;
+	font-family:'Droid Sans', Helvetica;
 	font-weight:bold;
 }
 #surrounding path {
