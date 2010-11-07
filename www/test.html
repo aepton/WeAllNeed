@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html debug='true' lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'> 
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' /> 
+<link href="/~jeff/js/reset.css" media="screen" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="/~jeff/js/jquery.js"></script> 
+<script type="text/javascript" src="/~jeff/simplegeo-polymaps/polymaps.js"></script> 
+<script type="text/javascript" src="/~jeff/simplegeo-polymaps/lib/protovis/protodata.js"></script>
+<script type="text/javascript" src="/~jeff/simplegeo-polymaps/lib/nns/nns.js"></script>
+
+<script>
+var po = org.polymaps;
+$(function(){
+	// var color = pv.Scale.linear()
+	// 	.domain(pv.values(dataSet))
+	// 	.range(0, 80);
+	// var quantile = pv.Scale.quantile()
+	// 	.quantiles(27)
+	// 	.domain(pv.values(dataSet))
+	// 	.range(0, 26);
+
+	// console.info(quantile(1.2));
+	// for (var i = 0; i < 10; i += .1) {
+	// 	console.info(quantile(i) + " " + i);
+	// }
+	// for (var i = 0; i < 10; i += .1) {
+	// 	console.info(Math.round(color(i)) + " " + i);
+	// }
+	var svg = n$("#map").add("svg:svg");
+	var map = po.map()
+	    .container($n(svg))
+		// .container(document.body.appendChild(po.svg("svg")))
+		.add(po.interact()).add(po.compass().pan("none"))
+		.add(po.hash());
+		// .add(po.image()
+		// .url(po.url("http://{S}tile.cloudmade.com"
+		// + "/1a1b06b230af4efdbb989ea99e9841af"
+		// + "/998/256/{Z}/{X}/{Y}.png")
+		// .hosts(["a.","b.","c.",""])));
+		
+		
+	map.add(po.geoJson()
+		.url("surrounding_area.geojson")
+		.id("surrounding")
+		.tile(false));
+
+	map.add(po.geoJson()
+		.url("TL_blocks3.geojson")
+		.id("tenderloin")
+		.tile(false));
+
+	map.add(po.geoJson()
+		.url("street_names.json")
+		.id("streets_loc")
+		.tile(false)
+		.on("load", load));
+
+		
+		// po.stylist()
+			// .attr("fill", function(d) {return color(d.properties.value).color;})
+			// .title(function(d) {return "value: " + d.properties.value;})));
+	
+	// map.add(po.compass().pan("none"));
+	// 
+	// map.container().setAttribute("class", "Blues");
+	// 
+	// svg.add("svg:text")
+	//     .attr("id", "street")
+	// 	.attr("innerHTML", "asdfjasjdf");
+	    // .attr("width", "1")
+	    // .attr("height", "140%")
+	  // .add("svg:feGaussianBlur")
+	    // .attr("in", "SourceAlpha")
+	    // .attr("stdDeviation", 3);
+	
+	function load(e) {
+		var fontSize = .7 * Math.pow(2, e.tile.zoom - 12);
+		console.info(fontSize);
+		for (var i = 0; i < e.features.length; i++) {
+			var c = n$(e.features[i].element),
+				g = c.parent().add("svg:g", c);
+			
+			g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+			console.info(c.attr("cx") + " " + c.attr("cy"));
+			g.add("svg:text")
+				.attr("font-size", fontSize)
+				.attr("class", "street-names")
+				.attr("transform", "rotate(" + e.features[i].data.properties.rotate + ")")
+				// .attr("rotate", "43+");
+				// .attr("style","stroke:none; fill:#000000;");
+			g.element.firstChild.textContent = e.features[i].data.properties.street_name;
+			// console.info(g);
+				// .attr("transform", "translate(" + r + ",0)skewX(-45)");
+				// .attr("filter", "url(#shadow)");
+
+		}
+	}
+
+
+
+});
+</script>
+
+<style>
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.compass .back {
+	fill: #eee;
+	fill-opacity: .8;
+}
+
+.compass .fore {
+	stroke: #999;
+	stroke-width: 1.5px;
+}
+
+.compass rect.back.fore {
+	fill: #999;
+	fill-opacity: .3;
+	stroke: #eee;
+	stroke-width: 1px;
+	shape-rendering: crispEdges;
+}
+
+.compass .direction {
+	fill: none;
+}
+
+.compass .chevron {
+	fill: none;
+	stroke: #999;
+	stroke-width: 5px;
+}
+
+.compass .zoom .chevron {
+	stroke-width: 4px;
+}
+
+.compass .active .chevron, .compass .chevron.active {
+	stroke: #fff;
+}
+
+.compass.active .active .direction {
+	fill: #999;
+}
+
+
+#tenderloin path {
+	fill:#999;
+	stroke-opacity:0;
+}
+#streets_loc {
+	fill:#e22;
+	fill-opacity:0;
+	stroke-opacity:0;
+	stroke:#00f;
+	
+}
+.street-names {
+	fill:#000;
+	fill-opacity:1;
+	font-family:Helvetica;
+	font-weight:bold;
+}
+#surrounding path {
+	fill-opacity:0;
+	stroke:#666;
+	stroke-width:.5px;
+}
+</style>
+
+</head>
+
+<body id='map'>
+	
+</body>
+
+</html>
