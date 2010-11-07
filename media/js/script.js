@@ -12,6 +12,7 @@ function init () {
 }
 //onload, we'll call the init function.
 window.onload = init;
+var po = org.polymaps;
 
 $(document).ready(function() {
 	
@@ -51,12 +52,38 @@ $(document).ready(function() {
 	});
 	
 	getLatestQuotes();
+	
+	var base_json_url = "media/js/static_json/";
+	var svg = n$("#map").add("svg:svg");
+	var map = po.map()
+	    .container($n(svg))
+		.add(po.interact()).add(po.compass().pan("none"))
+		.add(po.hash());
+	
+	map.add(po.geoJson()
+		.url(base_json_url + "surrounding_area.json")
+		.id("surrounding")
+		.tile(false));
+
+	map.add(po.geoJson()
+		.url(base_json_url + "tenderloin.json")
+		.id("tenderloin")
+		.tile(false));
+
+	map.add(po.geoJson()
+		.url(base_json_url + "street_names.json")
+		.id("streets_loc")
+		.tile(false)
+		.on("load", load));
+
+	
 });
 
 function getLatestQuotes() {
 	$.ajax({
 		url: '/quotes',
-		//dataType:'jsonp',
+		//url: "http://app.checkin.to/api/checkins?callback=jsonp1289168350520&n=4000&locishash=1S4G",
+		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
 		},
@@ -65,3 +92,24 @@ function getLatestQuotes() {
 		}
 	});
 }
+
+
+function load(e) {
+	var fontSize = .7 * Math.pow(2, e.tile.zoom - 12);
+	console.info(fontSize);
+	for (var i = 0; i < e.features.length; i++) {
+		var c = n$(e.features[i].element),
+			g = c.parent().add("svg:g", c);
+		
+		g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")")
+			.add("svg:text")
+			.attr("font-size", fontSize)
+			.attr("class", "street-names")
+			.attr("transform", "rotate(" + e.features[i].data.properties.rotate + ")");
+
+		g.element.firstChild.textContent = e.features[i].data.properties.street_name;
+
+	}
+}
+
+
