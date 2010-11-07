@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html debug='true' lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'> 
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' /> 
+<link href="/~jeff/js/reset.css" media="screen" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="/~jeff/js/jquery.js"></script> 
+<script type="text/javascript" src="/~jeff/simplegeo-polymaps/polymaps.js"></script> 
+<script type="text/javascript" src="/~jeff/simplegeo-polymaps/lib/protovis/protodata.js"></script>
+
+<script>
+var po = org.polymaps;
+$(function(){
+	// var color = pv.Scale.linear()
+	// 	.domain(pv.values(dataSet))
+	// 	.range(0, 80);
+	// var quantile = pv.Scale.quantile()
+	// 	.quantiles(27)
+	// 	.domain(pv.values(dataSet))
+	// 	.range(0, 26);
+
+	// console.info(quantile(1.2));
+	// for (var i = 0; i < 10; i += .1) {
+	// 	console.info(quantile(i) + " " + i);
+	// }
+	// for (var i = 0; i < 10; i += .1) {
+	// 	console.info(Math.round(color(i)) + " " + i);
+	// }
+	var map = po.map()
+		.container(document.body.appendChild(po.svg("svg")))
+		.add(po.interact()).add(po.compass().pan("none"))
+		.add(po.hash());
+		// .add(po.image()
+		// .url(po.url("http://{S}tile.cloudmade.com"
+		// + "/1a1b06b230af4efdbb989ea99e9841af"
+		// + "/998/256/{Z}/{X}/{Y}.png")
+		// .hosts(["a.","b.","c.",""])));
+		
+		
+		
+	// 	.add(po.image()
+	// 	.url(po.url("http://{S}tile.cloudmade.com"
+	// 	+ "/1a1b06b230af4efdbb989ea99e9841af"
+	// 	+ "/998/256/{Z}/{X}/{Y}.png")
+	// 	.hosts(["a.","b.","c.",""])));
+		
+	map.add(po.geoJson()
+		.url("surrounding_area.geojson")
+		.id("surrounding")
+		.tile(false));
+	// 
+	// map.add(po.geoJson()
+	// 	.url("http://polymaps.appspot.com/state/{Z}/{X}/{Y}.json")
+	// 	.id("state"));
+	// 
+	map.add(po.geoJson()
+		.url("TL_blocks3.geojson")
+		.id("tenderloin")
+		.tile(false));
+		// .on("load", load));
+		
+		// po.stylist()
+			// .attr("fill", function(d) {return color(d.properties.value).color;})
+			// .title(function(d) {return "value: " + d.properties.value;})));
+	
+	// map.add(po.compass().pan("none"));
+	// 
+	// map.container().setAttribute("class", "Blues");
+	// 
+	// function load(e) {
+	// 	for (var i = 0; i < e.features.length; i++) {
+	// 		dataSet.push(e.features[i].data.properties.value);
+	// 	}
+	// 	for (var i = 0; i < e.features.length; i++) {
+	// 		var feature = e.features[i];
+	// 
+	// 		if (feature.data.properties.value == 0) {
+	// 			feature.element.setAttribute("display", "none");
+	// 		} else {
+	// 			// console.info(feature);
+	// 			console.info(quantile(feature.data.value) + " " + feature.data.properties.value);
+	// 			// feature.element.setAttribute("class", "q" + quantile(e) + "-" + 9);
+	// 		}
+	// 	
+	// 	// feature.element.setAttribute("id", feature.data.id);
+	// 	}
+	// }
+
+
+});
+</script>
+
+<style>
+
+.compass .back {
+  fill: #eee;
+  fill-opacity: .8;
+}
+
+.compass .fore {
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+.compass rect.back.fore {
+  fill: #999;
+  fill-opacity: .3;
+  stroke: #eee;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.compass .direction {
+  fill: none;
+}
+
+.compass .chevron {
+  fill: none;
+  stroke: #999;
+  stroke-width: 5px;
+}
+
+.compass .zoom .chevron {
+  stroke-width: 4px;
+}
+
+.compass .active .chevron, .compass .chevron.active {
+  stroke: #fff;
+}
+
+.compass.active .active .direction {
+  fill: #999;
+}
+
+
+#tenderloin path {
+	fill:#999;
+	stroke-opacity:0;
+}
+#surrounding path {
+	fill-opacity:0;
+	stroke:#666;
+	stroke-width:.5px;
+}
+</style>
+
+</head>
+
+<body>
+	
