@@ -33,22 +33,14 @@ $(document).ready(function() {
 					if ($(filterVal).length == 1) {
 						window.location.hash = this.attr('id');
 					}
-                }  
+                }
             });  
         }
         return false;  
     });
-
+	
 	$('nav #filters').click(function() {
 		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
-	});
-	
-	//when we click on an article (a quote), we'll change the hash of the window to it's id
-	$('article').click(function(){
-		$("article").removeClass('selected');
-		$(this).addClass('selected');
-		document.location.hash="sel_"+$(this).attr("id");
-		//return false;
 	});
 	
 	getLatestQuotes();
@@ -103,6 +95,13 @@ function getLatestQuotes() {
 				article.append(quote.quote_text);
 				
 				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
+				
+				article.click(function(){
+					$("article").removeClass('selected');
+					$(this).addClass('selected');
+					document.location.hash="sel_"+$(this).attr("id");
+					//return false;
+				});
 				
 				$("#quotelist").append(article);
 				console.log(article);
