@@ -27,6 +27,10 @@
 
   <!-- CSS : implied media="all" -->
   <link rel="stylesheet" href="../media/css/style.css?v=2">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic&subset=latin' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
+
+
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
@@ -53,23 +57,23 @@
 			<h2>Two questions anybody can answer.</h2>
 			<nav>
 				<ul>
-					<li>filters
-						<nav id="tagcloud">
-							<ul>
-								||taglist||
-								<li><a href="#girlfriend">girlfriend</a></li>
-								<li><a href="#foods">foods</a></li>
-								<li><a href="#cute-kitten">cute kitten</a></li>
-								<li><a href="#burrito">burrito</a></li>
-								<li><a href="#all">all</a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</nav>
-					</li>
-					<li>about</li>
+					<li id="about"><a href="#about">about</a></li>
+					<li id="filters"><a href="#tagcloud_open">filters</a></li>
 				</ul>
 			</nav>
+			<div class="clearfix"></div>
 	    </header>
+		<nav id="tagcloud">
+			<ul>
+				||taglist||
+				<li><a href="#girlfriend">girlfriend</a></li>
+				<li><a href="#foods">foods</a></li>
+				<li><a href="#cute-kitten">cute kitten</a></li>
+				<li><a href="#burrito">burrito</a></li>
+				<li><a href="#all">all</a></li>
+			</ul>
+			<div class="clearfix"></div>
+		</nav>
 		<nav>
 			<ul>
 				<li>What do you need?</li>

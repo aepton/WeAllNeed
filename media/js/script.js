@@ -35,13 +35,17 @@ $(document).ready(function() {
             });  
         }
         return false;  
-    });  
+    });
+
+	$('nav #filters').click(function() {
+		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
+	});
 	
 	//when we click on an article (a quote), we'll change the hash of the window to it's id
 	$('article').click(function(){
 		$("article").removeClass('selected');
 		$(this).addClass('selected');
-		document.location.hash="sel_"+$(this).attr("id")
+		document.location.hash="sel_"+$(this).attr("id");
 		//return false;
 	});
 });

@@ -27,7 +27,7 @@ fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+time, mark, audio, video {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; font-family: 'Droid Serif', arial, serif;}
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {display: block;}
 nav ul {list-style: none;}
@@ -153,16 +153,18 @@ IE7 */
 #container {height: 100%; position: relative; overflow: hidden;}
 
 header#banner {background: #ccc;}
-header#banner {}
+header#banner h1 {font-size: 3em; font-family: 'Droid Sans', arial, serif;}
+header#banner h2 {margin: -.5em .3em;}
+header#banner nav li {float: right; margin: 0 1em; cursor: pointer;}
 
 #main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px dashed gray; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
 
-#tagcloud {height: 2em; max-width: 480px; background: rgba(50,50,50,.6); position: fixed; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden;}
-#tagcloud:hover, #tagcloud:focus, #tagcloud:active, #tagcloud:target {height: 20%; background: rgba(50,50,50,.9);}
+#tagcloud {width: 100%;background: rgba(50,50,50,.6);  -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden; display: none;}
+#tagcloud:focus, #tagcloud:active, #tagcloud:target, #tagcloud.selected {background: rgba(50,50,50,.9);}
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 1em;}
 #tagcloud a {color: #aaa; text-decoration: none;}
-#tagcloud:hover a, #tagcloud:focus a, #tagcloud:active a {color: #efefef; font-size: 3em;}
+#tagcloud.selected a, #tagcloud:focus a, #tagcloud:active a {color: #efefef; font-size: 3em;}
 
 #quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 
