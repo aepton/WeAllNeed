@@ -184,80 +184,24 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 
 #quotelist article {padding: 1.2em 1.5em; border-top: 1px dotted transparent;background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
 #quotelist article.selected {border-top: 1px dotted #aaa; border-bottom: 1px dotted #aaa;}
-#quotelist article .infobox {position: absolute; bottom: 0; right: 105%; margin: 1em 0; padding: 10px; border: 1px solid #aaa;opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
+#quotelist article .infobox {position: absolute; bottom: 0; right: 105%; margin: 1em 0; background: #fff; padding: 10px; border: 1px solid #aaa;opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
 #quotelist article.selected .infobox {opacity: 1; z-index: 1;}
 #quotelist article .infobox:active, #quotelist article .infobox:focus {opacity: 0 !important;}
 
-#map {float: left;}
+#map {float: left; min-height: 600px; min-width: 600px;width: 100%; height: 100%;}
 
-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.compass .back {
-	fill: #eee;
-	fill-opacity: .8;
-}
-
-.compass .fore {
-	stroke: #999;
-	stroke-width: 1.5px;
-}
-
-.compass rect.back.fore {
-	fill: #999;
-	fill-opacity: .3;
-	stroke: #eee;
-	stroke-width: 1px;
-	shape-rendering: crispEdges;
-}
-
-.compass .direction {
-	fill: none;
-}
-
-.compass .chevron {
-	fill: none;
-	stroke: #999;
-	stroke-width: 5px;
-}
-
-.compass .zoom .chevron {
-	stroke-width: 4px;
-}
-
-.compass .active .chevron, .compass .chevron.active {
-	stroke: #fff;
-}
-
-.compass.active .active .direction {
-	fill: #999;
-}
-
-
-#tenderloin path {
-	fill:#999;
-	stroke-opacity:0;
-}
-#streets_loc {
-	fill:#e22;
-	fill-opacity:0;
-	stroke-opacity:0;
-	stroke:#00f;
-	
-}
-.street-names {
-	fill:#000;
-	fill-opacity:1;
-	font-family:Helvetica;
-	font-weight:bold;
-}
-#surrounding path {
-	fill-opacity:0;
-	stroke:#666;
-	stroke-width:.5px;
-}
+svg { width: 100%; height: 100%; }
+.compass .back { fill: #eee; fill-opacity: .8; }
+.compass .fore { stroke: #999; stroke-width: 1.5px; }
+.compass rect.back.fore { fill: #999; fill-opacity: .3; stroke: #eee; stroke-width: 1px; shape-rendering: crispEdges; }
+.compass .direction { fill: none; }
+.compass .chevron { fill: none; stroke: #999; stroke-width: 5px; }
+.compass .zoom .chevron { stroke-width: 4px; }
+.compass .active .chevron, .compass .chevron.active { stroke: #fff; }
+.compass.active .active .direction { fill: #999; }
+#tenderloin path { fill:#999; stroke-opacity:0; } #streets_loc { fill:#e22; fill-opacity:0; stroke-opacity:0; stroke:#00f;}
+.street-names { fill:#000; fill-opacity:1; font-family:Helvetica; font-weight:bold; } #surrounding path { fill-opacity:0;
+stroke:#666; stroke-width:.5px; }
 
 #mobilefoot {display: none;}
 
