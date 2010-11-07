@@ -85,7 +85,6 @@ class JSON (webapp.RequestHandler):
         self.response.out.write('[')
         for out in json_out[:-1]:
             self.response.out.write('{\n')
-            self.response.out.write('\tid: ')
             for key in out.keys():
                 if isinstance(out[key], basestring):
                     out[key] = '"%s"' % out[key]
@@ -98,22 +97,6 @@ class JSON (webapp.RequestHandler):
                 out[key] = '"%s"' % out[key]
             self.response.out.write('\t%s: %s,\n' % (key, out[key]))
         self.response.out.write('},]\n')
-    def get2(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        query = QuoteObject.all()
-        results = query.fetch(limit=200)
-        json_out = []
-        for result in results:
-            json_out.append(self.to_dict(result))
-        self.response.out.write('[')
-        for out in json_out:
-            self.response.out.write('{\n')
-            for key in out.keys():
-                if isinstance(out[key], basestring):
-                    out[key] = '"%s"' % out[key]
-                self.response.out.write('\t%s: %s,\n' % (key, out[key]))
-            self.response.out.write('},\n')
-        self.response.out.write(']')
     def to_dict(self, model):
         output = {}
         SIMPLE_TYPES = (int, long, float, bool, dict, basestring, list)
@@ -132,6 +115,7 @@ class JSON (webapp.RequestHandler):
                 output['long'] = float(str(value).split(',')[1])
             else:
                 raise ValueError('cannot encode ' + repr(prop))
+        output['id'] = model.key().id()
         return output
     def post(self):
         pass
