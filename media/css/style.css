@@ -16,6 +16,7 @@
   v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
   html5doctor.com/html-5-reset-stylesheet/
 */
+html, body {height: 100%;}
 
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -224,20 +225,25 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author: 
  */
-#container {}
+#container {height: 100%;position: relative; overflow: hidden;}
 
 #main {width: 55%; max-width: 480px; height: 100%; position: relative;float: left; border-right: 1px dashed gray;-webkit-box-shadow: 5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: 5px 0 5px rgba(50,50,50,.2); box-shadow: 5px 0 5px rgba(50,50,50,.2);}
-#tagcloud {height: 2em; width: 100%;background: rgba(50,50,50,.6); display: block; -webkit-transition: height 0.6s; -moz-transition: height 0.6s; transition: height 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; }
+#tagcloud {height: 2em; width: 97%;background: rgba(50,50,50,.6); position: absolute; -webkit-transition: height 0.6s; -moz-transition: height 0.6s; transition: height 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; box-shadow:  0 -5px 5px rgba(50,50,50,.6) inset; }
 #tagcloud:hover, #tagcloud:focus, #tagcloud:active, #tagcloud:target {height: 300px; opacity: 1;}
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 .2em;}
-#quotelist {min-height: 480px; font-size: 2em;}
+
+#quotelist {min-height: 480px; max-height: 100%;font-size: 2em; overflow: scroll;}
 #quotelist article {padding: 10px; background: #efefef; overflow: hidden;-webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
-#quotelist article img {position: absolute; top:  1em; left: 105%; opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
+#quotelist article img {position: absolute; top:  0; left: 105%; margin: 1em 0 ;opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
 #quotelist article:target img {opacity: 1; z-index: 1;}
+#quotelist article img:active, #quotelist article img:focus {opacity: 0 !important;}
 
-#side {min-width: 45%; max-width: 100%; height: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
+#map {height: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
 
+#mobilefoot {display: none;}
+
+#footer {position: absolute; bottom: 0;}
 
 
 
@@ -255,7 +261,8 @@ button {  width: auto; overflow: visible; }
 
 @media all and (orientation:portrait) { 
   /* Style adjustments for portrait mode goes here */
-  
+    #container {width: 320px;}
+    #main {width: 100%}
 }
 
 @media all and (orientation:landscape) { 
@@ -266,7 +273,14 @@ button {  width: auto; overflow: visible; }
 /* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
    Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
 @media screen and (max-device-width: 480px) {
-  
+  #container {max-width: 480px; min-width: 320px;}
+   
+   #quotelist article img {position: relative; top: 0; left: 0; height: 0; width: 0;}
+   #quotelist article:target img {height: inherit; width: inherit; max-width: 305px;}
+   
+   #mobilefoot {display: block; position: fixed; top: 0; width: 100%; background: rgba(50,50,50,.4); z-index: 100;}
+   #mobilefoot ul {list-style: none;}
+   #mobilefoot li {float: left; width: 33%; text-align: center;}
   
   /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
      j.mp/textsizeadjust 

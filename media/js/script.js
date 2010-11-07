@@ -16,14 +16,15 @@ $(document).ready(function() {
 		window.location.hash = filterVal;
   
         if(filterVal == 'all') {  
-            $('article.hidden').fadeIn('slow').removeClass('hidden');  
+            $('article.hidden').slideDown('normal').removeClass('hidden');  
         } else {  
             $('article').each(function() {  
                 if(!$(this).hasClass(filterVal)) {  
                     $(this).fadeOut('fast').addClass('hidden');  
                 } else {  
-                    $(this).fadeIn('normal').removeClass('hidden');
- 					if ($(filterVal).length == 1) {
+                    $(this).slideDown('normal').removeClass('hidden');
+ 					//TODO: this if statement should set the hash to the id of the quote if there is only one quote of that type
+					if ($(filterVal).length == 1) {
 						window.location.hash = this.attr('id');
 					}
                 }  
