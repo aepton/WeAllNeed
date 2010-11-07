@@ -82,10 +82,26 @@ $(document).ready(function() {
 function getLatestQuotes() {
 	$.ajax({
 		url: '/quotes',
-		//url: "http://app.checkin.to/api/checkins?callback=jsonp1289168350520&n=4000&locishash=1S4G",
 		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
+			for (i=0; i<data.length; i++) {
+				quote = data[i];
+				article = $("<article id='quote"+quote.id+"'></article>");
+				if (quote.use_first_question) {
+					article.addClass("think");
+				}
+				else {
+					article.addClass("need");
+				}
+				$(quote.tags).each(function(tag) {
+					article.addClass(tag);
+				});
+				article.append(quote.quote_text);
+				$("#quotelist").append(article);
+				console.log(article);
+			}
+			
 		},
 		error: function() {
 			console.log("error");
