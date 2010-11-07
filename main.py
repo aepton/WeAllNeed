@@ -101,7 +101,10 @@ class MainPage(webapp.RequestHandler):
             
 class AddData(webapp.RequestHandler):
     def post(self):
-        quote = QuoteObject()
+        if self.request.get('item_id'):
+            quote = QuoteObject.get_by_id(int(self.request.get('item_id')))
+        else:
+            quote = QuoteObject()
         quote.quote_text = self.request.get('quote_text')
         quote.quote_text_alt = self.request.get('quote_text_alt')
         quote.person_name = self.request.get('person_name')
@@ -170,24 +173,53 @@ class GenerateTagsAttribute(webapp.RequestHandler):
 
 class DataForm(webapp.RequestHandler):
     def get(self):
+        item_id = self.request.get('id')
+        item_strs = {'quote_text': '', 'quote_text_alt': '',
+                     'use_first_q_true': '', 'use_first_q_false': '',
+                     'name': '', 'location_lat': '', 'location_long': '',
+                     'age': '', 'photo_url': '', 'mp3_url': '',
+                     'update_item': ''}
+        if item_id:
+            quote = QuoteObject.get_by_id(int(item_id))
+            item_strs['quote_text'] = quote.quote_text
+            item_strs['quote_text_alt'] = quote.quote_text_alt
+            item_strs['use_first_q_true'] = 'checked' if quote.use_first_question else ''
+            item_strs['use_first_q_false'] = 'checked' if not quote.use_first_question else ''
+            item_strs['name'] = quote.person_name
+            location_string = str(quote.location)
+            item_strs['location_lat'] = location_string.split(',')[0]
+            item_strs['location_long'] = location_string.split(',')[1]
+            item_strs['age'] = quote.person_age
+            item_strs['photo_url'] = quote.photo_url
+            item_strs['mp3_url'] = quote.audio_url
+            item_strs['update_item'] = ('<input type="hidden" name="item_id"'
+                                        'value="%s">' % item_id)
+        else:
+            item_strs['use_first_q_true'] = 'checked'
         self.response.out.write("""
 <html><head><title>Add Data Here</title></head><body>
 <form action="/add_data" method="post">
-<div><p>What are you thinking about right now<textarea name="quote_text" rows="3" cols="60"></textarea></p></div>
-<div><p>What do you need<textarea name="quote_text_alt" rows="3" cols="60"></textarea></p></div>
-<div><p><input type="radio" name="use_first_question" value="True" checked>Use "What are you thinking about" question</input><br>
-<input type="radio" name="use_first_question" value="False">Use "What do you need" question</input></p></div>
-<div><p>Name of Quotee<input type="text" name="person_name"></input></p></div>
-<div><p>Latitude<input type="text" name="location_lat"></input></p></div>
-<div><p>Longitude<input type="text" name="location_long"></input></p></div>
-<div><p>Age<input type="text" name="person_age"></input></p></div>
-<div><p>Photo URL<input type="text" name="photo_url"></input></p></div>
-<div><p>MP3 URL<input type="text" name="audio_url"></input></p></div>
+<div><p>What are you thinking about right now<textarea name="quote_text" rows="3" cols="60">%s</textarea></p></div>
+<div><p>What do you need<textarea name="quote_text_alt" rows="3" cols="60">%s</textarea></p></div>
+<div><p><input type="radio" name="use_first_question" value="True" %s>Use "What are you thinking about" question</input><br>
+<input type="radio" name="use_first_question" value="False" %s>Use "What do you need" question</input></p></div>
+<div><p>Name of Quotee<input type="text" name="person_name" value=%s></input></p></div>
+<div><p>Latitude<input type="text" name="location_lat" value=%s></input></p></div>
+<div><p>Longitude<input type="text" name="location_long" value=%s></input></p></div>
+<div><p>Age<input type="text" name="person_age" value=%s></input></p></div>
+<div><p>Photo URL<input type="text" name="photo_url" value=%s></input></p></div>
+<div><p>MP3 URL<input type="text" name="audio_url" value=%s></input></p></div>
+%s
 <div><input type="submit" value="Add Quote"></div>
 </form>
 <br><br><a href="http://tenderneeds.appspot.com/generate_tags">Regenerate Tags</a>
 </body>
-</html>""")
+</html>""" % (item_strs['quote_text'], item_strs['quote_text_alt'],
+              item_strs['use_first_q_true'], item_strs['use_first_q_false'],
+              item_strs['name'], item_strs['location_lat'],
+              item_strs['location_long'], item_strs['age'],
+              item_strs['photo_url'], item_strs['mp3_url'],
+              item_strs['update_item']))
 
 class JSON (webapp.RequestHandler):
     def get(self):
