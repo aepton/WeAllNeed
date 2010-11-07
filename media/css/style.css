@@ -188,56 +188,7 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist article.selected .infobox {opacity: 1; z-index: 1;}
 #quotelist article .infobox:active, #quotelist article .infobox:focus {opacity: 0 !important;}
 
-#map {height: 500px; width: 500px; float: left;background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
-
-#mobilefoot {display: none;}
-
-#footer {position: absolute; bottom: 0;}
-/*
- * Media queries for responsive design
- * These follow after primary styles so they will successfully override. 
- */
-@media all and (orientation:portrait) {
-/* Style adjustments for portrait mode goes here */
-#container {width: 320px;}
-#main {width: 100%}
-}
-@media all and (orientation:landscape) {
-/* Style adjustments for landscape mode goes here */
-}
-/* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
-   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
-@media screen and (max-device-width: 480px) {
-#container {max-width: 480px; min-width: 320px;}
-#quotelist article img {position: relative; top: 0; left: 0; height: 0; width: 0;}
-#quotelist article:target img {height: inherit; width: inherit; max-width: 305px;}
-#mobilefoot {display: block; position: fixed; top: 0; width: 100%; background: rgba(50,50,50,.4); z-index: 100;}
-#mobilefoot ul {list-style: none;}
-#mobilefoot li {float: left; width: 33%; text-align: center;}
-/* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
-     j.mp/textsizeadjust 
-  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
-}
-/
-* 
- * print styles
- * inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
- */
-@media print {
-* {background: transparent !important; color: #444 !important; text-shadow: none !important;}
-a, a:visited {color: #444 !important; text-decoration: underline;}
-a:after {content: " (" attr(href) ")";}
-abbr:after {content: " (" attr(title) ")";}
-.ir a:after {content: "";}
-/* Don't show links for images */
-pre, blockquote {border: 1px solid #999; page-break-inside: avoid;}
-thead {display: table-header-group;}
-/* css-discuss.incutio.com/wiki/Printing_Tables */
-tr, img {page-break-inside: avoid;}
-  @page { margin: 0.5cm; }
-p, h2, h3 {orphans: 3; widows: 3;}
-h2, h3 {page-break-after: avoid;}
-}
+#map {float: left;}
 
 svg {
   width: 100%;
@@ -306,4 +257,53 @@ svg {
 	fill-opacity:0;
 	stroke:#666;
 	stroke-width:.5px;
+}
+
+#mobilefoot {display: none;}
+
+#footer {position: absolute; bottom: 0;}
+/*
+ * Media queries for responsive design
+ * These follow after primary styles so they will successfully override. 
+ */
+@media all and (orientation:portrait) {
+/* Style adjustments for portrait mode goes here */
+#container {width: 320px;}
+#main {width: 100%}
+}
+@media all and (orientation:landscape) {
+/* Style adjustments for landscape mode goes here */
+}
+/* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
+   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+#container {max-width: 480px; min-width: 320px;}
+#quotelist article img {position: relative; top: 0; left: 0; height: 0; width: 0;}
+#quotelist article:target img {height: inherit; width: inherit; max-width: 305px;}
+#mobilefoot {display: block; position: fixed; top: 0; width: 100%; background: rgba(50,50,50,.4); z-index: 100;}
+#mobilefoot ul {list-style: none;}
+#mobilefoot li {float: left; width: 33%; text-align: center;}
+/* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
+     j.mp/textsizeadjust 
+  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
+}
+/
+* 
+ * print styles
+ * inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
+ */
+@media print {
+* {background: transparent !important; color: #444 !important; text-shadow: none !important;}
+a, a:visited {color: #444 !important; text-decoration: underline;}
+a:after {content: " (" attr(href) ")";}
+abbr:after {content: " (" attr(title) ")";}
+.ir a:after {content: "";}
+/* Don't show links for images */
+pre, blockquote {border: 1px solid #999; page-break-inside: avoid;}
+thead {display: table-header-group;}
+/* css-discuss.incutio.com/wiki/Printing_Tables */
+tr, img {page-break-inside: avoid;}
+  @page { margin: 0.5cm; }
+p, h2, h3 {orphans: 3; widows: 3;}
+h2, h3 {page-break-after: avoid;}
 }
