@@ -180,8 +180,8 @@ class ViewData(webapp.RequestHandler):
         self.response.out.write('<html><head><title>All entries</title>')
         self.response.out.write('</head><body>')
         for result in results:
-            self.response.out.write('<a href=%s%d>%d</a><br>' % (
-				link, result.key().id(), result.key().id()))
+            self.response.out.write('<a href=%s%d>%d - %s</a><br>' % (
+				link, result.key().id(), result.key().id(), result.person_name))
         self.response.out.write('</body></html>')
 
 class DataForm(webapp.RequestHandler):
