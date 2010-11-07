@@ -82,7 +82,8 @@ $(document).ready(function() {
 function getLatestQuotes() {
 	$.ajax({
 		url: '/quotes',
-		//dataType:'jsonp',
+		//url: "http://app.checkin.to/api/checkins?callback=jsonp1289168350520&n=4000&locishash=1S4G",
+		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
 		},
