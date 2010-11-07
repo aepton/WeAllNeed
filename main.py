@@ -171,6 +171,19 @@ class GenerateTagsAttribute(webapp.RequestHandler):
             result.put()
         self.response.out.write('</body></html>')
 
+class ViewData(webapp.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        query = QuoteObject.all()
+        results = query.fetch(limit=200)
+        link = 'http://tenderneeds.appspot.com/data_form?id='
+        self.response.out.write('<html><head><title>All entries</title>')
+        self.response.out.write('</head><body>')
+        for result in results:
+            self.response.out.write('<a href=%s%d>%d</a><br>' % (
+				link, result.key().id(), result.key().id()))
+        self.response.out.write('</body></html>')
+
 class DataForm(webapp.RequestHandler):
     def get(self):
         item_id = self.request.get('id')
@@ -279,6 +292,7 @@ application = webapp.WSGIApplication(
                                      ('/data_form', DataForm),
                                      ('/quotes', JSON),
                                      ('/generate_tags', GenerateTagsAttribute),
+                                     ('/view_data', ViewData),
                                      ('/', MainPage)])
 
 def main():
