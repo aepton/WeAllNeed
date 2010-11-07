@@ -13,7 +13,8 @@ function init () {
 //onload, we'll call the init function.
 window.onload = init;
 
-$(document).ready(function() {  
+$(document).ready(function() {
+	$("#quotelist").jScrollPane();
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
 		var filterVal = $(this).text().toLowerCase().replace(' ','-');
