@@ -16,6 +16,7 @@ class QuoteObject(db.Model):
     person_age = db.IntegerProperty()
     photo_url = db.LinkProperty()
     tags = db.StringListProperty()
+    use_first_question = db.BooleanProperty()
 
 
 class MainPage(webapp.RequestHandler):
@@ -57,10 +58,14 @@ class MainPage(webapp.RequestHandler):
         quotelist = ''
         counter = 0
         for item in datastore:
-            if not item.quote_text:
+            quote = ''
+            if item.use_first_question:
+                quote = item.quote_text
+            else:
+                quote = item.quote_text_alt
+            if not quote:
                 continue
-            article = item_template % (counter, '', item.quote_text, 
-                                       item.photo_url)
+            article = item_template % (counter, '', quote, item.photo_url)
             quotelist = '%s\n%s' % (quotelist, article)
             counter += 1
         return quotelist
@@ -105,6 +110,11 @@ class AddData(webapp.RequestHandler):
         quote.location = db.GeoPt(float(lat), float(longi))
         quote.person_age = int(self.request.get('person_age'))
         quote.photo_url = self.request.get('photo_url')
+        question_to_use = self.request.get('use_first_question')
+        if question_to_use.find('True') != -1:
+            quote.use_first_question = True
+        else:
+            quote.use_first_question = False
         quote.put()
         self.redirect('/data_form')
 
@@ -122,9 +132,24 @@ class GenerateTagsAttribute(webapp.RequestHandler):
                         'now', 'we', 'be', 'got', 'see', 'where', 'like',
                         'around', 'had', u'it\u2019s', 'it', 'have', 'just',
                         'really', 'guess', 'for', 'coming', 'take', 'if',
-                        'was', 'thinking', 'know']
+                        'was', 'thinking', 'know', 'wondering', 'of',
+                        u'don\u2019t', 'anything', 'you', 'in', "don't",
+                        'more', 'kind', 'some', 'not', 'do', 'but', 'buy',
+                        'out', "that's", 'well', u'that\u2019s', 'back', 'or',
+                        'stop']
         for result in results:
-            text = result.quote_text
+            text = ''
+            if result.use_first_question:
+                text = result.quote_text
+                result.use_first_question = True
+            elif len(result.quote_text_alt):
+                text = result.quote_text_alt
+                result.use_first_question = False
+            else:
+                text = result.quote_text
+                result.use_first_question = True
+            if not text:
+                continue
             removals = ['.', '(', ')', '"']
             for removal in removals:
                 text = text.replace(removal, '')
@@ -132,7 +157,6 @@ class GenerateTagsAttribute(webapp.RequestHandler):
             taglist = []
             for word in words:
                 word = word.lower()
-                #word = word.encode('iso-8859-1')
                 if word not in taglist and word not in banned_words:
                     taglist.append(word)
             result.tags = taglist
@@ -149,6 +173,8 @@ class DataForm(webapp.RequestHandler):
 <form action="/add_data" method="post">
 <div><p>What are you thinking about right now<textarea name="quote_text" rows="3" cols="60"></textarea></p></div>
 <div><p>What do you need<textarea name="quote_text_alt" rows="3" cols="60"></textarea></p></div>
+<div><p><input type="radio" name="use_first_question" value="True" checked>Use "What are you thinking about" question</input><br>
+<input type="radio" name="use_first_question" value="False">Use "What do you need" question</input></p></div>
 <div><p>Name of Quotee<input type="text" name="person_name"></input></p></div>
 <div><p>Latitude<input type="text" name="location_lat"></input></p></div>
 <div><p>Longitude<input type="text" name="location_long"></input></p></div>
