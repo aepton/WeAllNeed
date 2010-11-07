@@ -232,8 +232,9 @@ button {  width: auto; overflow: visible; }
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 .2em;}
 #quotelist {min-height: 480px;border-right: 1px dashed gray; font-size: 2em;}
-#quotelist article {padding: 10px; background: #efefef; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s;}
-#quotelist article:target, #quotelist article:focus, #quotelist article:active {height: 4em;}
+#quotelist article {padding: 10px; background: #efefef; overflow: hidden;-webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
+#quotelist article img {position: absolute; top:  1em; left: 105%; display: none; -webkit-transition: display ease-in 0.4s;}
+#quotelist article:target img {display: block;}
 
 #side {min-width: 45%; max-width: 100%; height: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
 
