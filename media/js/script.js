@@ -2,14 +2,39 @@
 
 */
 function init () {
-	window.location.hash='#intro';
+	if (window.location.hash == ""){
+		window.location.hash='#intro';
+	}
 }
 //onload, we'll call the init function.
 window.onload = init;
-//when we click on an article (a quote), we'll change the hash of the window to it's id
-$('article').click(function(){
-	var id = $(this).attr('id');
-	window.location.hash=id;
+
+$(document).ready(function() {  
+    //fitlering for the tagcloud
+	$('#tagcloud li a').click(function() {  
+        var filterVal = $(this).text().toLowerCase().replace(' ','-');
+		window.location.hash = filterVal;
+  
+        if(filterVal == 'all') {  
+            $('article.hidden').fadeIn('slow').removeClass('hidden');  
+        } else {  
+            $('article').each(function() {  
+                if(!$(this).hasClass(filterVal)) {  
+                    $(this).fadeOut('fast').addClass('hidden');  
+                } else {  
+                    $(this).fadeIn('normal').removeClass('hidden');
+ 					if ($(filterVal).length == 1) {
+						window.location.hash = this.attr('id');
+					}
+                }  
+            });  
+        }
+        return false;  
+    });  
+	
+	//when we click on an article (a quote), we'll change the hash of the window to it's id
+	$('article').click(function(){
+		var id = $(this).attr('id');
+		window.location.hash=id;
+	});
 });
-
-
