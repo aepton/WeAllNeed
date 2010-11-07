@@ -5,14 +5,18 @@ function init () {
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
+	else {
+		s=$(document.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
+		eval(s);
+	}
 }
 //onload, we'll call the init function.
 window.onload = init;
 
 $(document).ready(function() {  
     //fitlering for the tagcloud
-	$('#tagcloud li a').click(function() {  
-        var filterVal = $(this).text().toLowerCase().replace(' ','-');
+	$('#tagcloud li a').click(function() {
+		var filterVal = $(this).text().toLowerCase().replace(' ','-');
 		window.location.hash = filterVal;
   
         if(filterVal == 'all') {  
@@ -34,10 +38,10 @@ $(document).ready(function() {
     });  
 	
 	//when we click on an article (a quote), we'll change the hash of the window to it's id
-	$('article').click(function(e){
-		var id = $(this).attr('id');
-		window.location.hash=id;
-		e.preventDefault();
-		return false;
+	$('article').click(function(){
+		$("article").removeClass('selected');
+		$(this).addClass('selected');
+		document.location.hash="sel_"+$(this).attr("id")
+		//return false;
 	});
 });
