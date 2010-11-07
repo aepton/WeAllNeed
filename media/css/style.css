@@ -15,7 +15,7 @@
   v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
   html5doctor.com/html-5-reset-stylesheet/
 */
-html, body {height: 100%;}
+html, body {height: 100%; overflow: hidden;}
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -152,16 +152,19 @@ IE7 */
  */
 #container {height: 100%; position: relative; overflow: hidden;}
 
-#main {width: 55%; max-width: 480px; height: 100%; position: relative; float: left; border-right: 1px dashed gray; -webkit-box-shadow: 5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: 5px 0 5px rgba(50,50,50,.2); box-shadow: 5px 0 5px rgba(50,50,50,.2);}
+header#banner {background: #ccc;}
+header#banner {}
 
-#tagcloud {height: 2em; max-width: 480px; background: rgba(50,50,50,.6); position: fixed; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1;}
+#main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px dashed gray; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
+
+#tagcloud {height: 2em; max-width: 480px; background: rgba(50,50,50,.6); position: fixed; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden;}
 #tagcloud:hover, #tagcloud:focus, #tagcloud:active, #tagcloud:target {height: 20%; background: rgba(50,50,50,.9);}
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 1em;}
 #tagcloud a {color: #aaa; text-decoration: none;}
 #tagcloud:hover a, #tagcloud:focus a, #tagcloud:active a {color: #efefef; font-size: 3em;}
 
-#quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; overflow-y: scroll; overflow-x: hidden;}
+#quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 
 #quotelist::-webkit-scrollbar {width: 8px; height: 8px; -webkit-transition: all 0.3s ease-in-out;}
 #quotelist::-webkit-scrollbar-button:start:decrement {-webkit-border-radius: 6px; height: 0px; display: block; background-color: transparent;}
@@ -170,13 +173,13 @@ IE7 */
 #quotelist::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {height: 50px; background-color: #9a9a9a; -webkit-border-radius: 5px;}
 #quotelist::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {background-color: #5e5e5e; -webkit-box-shadow: 0 0 2px #ccc;}
 
-#quotelist article {padding: 1.5em 10px; background: #efefef; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -moz-box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); box-shadow: box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 0 5px rgba(50,50,50, .2); -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
+#quotelist article {padding: 1.5em 10px; background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
 #quotelist article.selected {background: #444; color: #efefef;}
-#quotelist article img {position: absolute; top: 0; left: 105%; margin: 1em 0; opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
+#quotelist article img {position: absolute; bottom: 0; right: 105%; margin: 1em 0; opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
 #quotelist article.selected img {opacity: 1; z-index: 1;}
 #quotelist article img:active, #quotelist article img:focus {opacity: 0 !important;}
 
-#map {height: 500px; width: 500px; float: left; background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
+#map {height: 500px; width: 500px; float: left;background: url(http://www.beauty-reality.com/travel/travel/sanFran/sfimages/map.gif) no-repeat;}
 
 #mobilefoot {display: none;}
 
