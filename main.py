@@ -195,6 +195,8 @@ class JSON (webapp.RequestHandler):
         query = QuoteObject.all()
         results = query.fetch(limit=200)
         json_out = []
+        if self.request.get("callback"):
+            self.response.out.write(self.request.get("callback")+"(")
         for result in results:
             json_out.append(self.to_dict(result))
         self.response.out.write('[')
@@ -212,6 +214,9 @@ class JSON (webapp.RequestHandler):
                 out[key] = '"%s"' % out[key]
             self.response.out.write('\t%s: %s,\n' % (key, out[key]))
         self.response.out.write('},]\n')
+        if self.request.get("callback"):
+            self.response.out.write(");")
+        
     def to_dict(self, model):
         output = {}
         SIMPLE_TYPES = (int, long, float, bool, dict, basestring, list)

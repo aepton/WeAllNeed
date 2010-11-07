@@ -5,7 +5,7 @@ function init () {
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
-	else {
+	else if ($(document.location.hash.replace("sel_","")).length) {
 		s=$(document.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
 		eval(s);
 	}
@@ -49,4 +49,19 @@ $(document).ready(function() {
 		document.location.hash="sel_"+$(this).attr("id");
 		//return false;
 	});
+	
+	getLatestQuotes();
 });
+
+function getLatestQuotes() {
+	$.ajax({
+		url: '/quotes',
+		//dataType:'jsonp',
+		success: function(data) {
+			console.log(data);
+		},
+		error: function() {
+			console.log("error");
+		}
+	});
+}
