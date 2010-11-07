@@ -15,6 +15,7 @@ class QuoteObject(db.Model):
     location = db.GeoPtProperty()
     person_age = db.IntegerProperty()
     photo_url = db.LinkProperty()
+    audio_url = db.LinkProperty()
     tags = db.StringListProperty()
     use_first_question = db.BooleanProperty()
 
@@ -110,6 +111,7 @@ class AddData(webapp.RequestHandler):
         quote.location = db.GeoPt(float(lat), float(longi))
         quote.person_age = int(self.request.get('person_age'))
         quote.photo_url = self.request.get('photo_url')
+        quote.audio_url = self.request.get('audio_url')
         question_to_use = self.request.get('use_first_question')
         if question_to_use.find('True') != -1:
             quote.use_first_question = True
@@ -180,6 +182,7 @@ class DataForm(webapp.RequestHandler):
 <div><p>Longitude<input type="text" name="location_long"></input></p></div>
 <div><p>Age<input type="text" name="person_age"></input></p></div>
 <div><p>Photo URL<input type="text" name="photo_url"></input></p></div>
+<div><p>MP3 URL<input type="text" name="audio_url"></input></p></div>
 <div><input type="submit" value="Add Quote"></div>
 </form>
 <br><br><a href="http://tenderneeds.appspot.com/generate_tags">Regenerate Tags</a>

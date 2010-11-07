@@ -2,6 +2,7 @@
 
 */
 function init () {
+	$("#quotelist").css('overflow','auto').jScrollPane();
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
@@ -14,7 +15,7 @@ function init () {
 window.onload = init;
 
 $(document).ready(function() {
-	$("#quotelist").jScrollPane();
+	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
 		var filterVal = $(this).text().toLowerCase().replace(' ','-');
