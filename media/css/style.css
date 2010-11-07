@@ -152,18 +152,21 @@ IE7 */
  */
 #container {height: 100%; position: relative; overflow: hidden;}
 
-#main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px dashed gray; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
+#main {min-width: 300px;width: 55%; max-width: 600px; height: 100%; position: absolute; top: 0; right: 0; background: #fff; border-left: 1px solid #aaa; -webkit-box-shadow: -5px 0 5px rgba(50,50,50,.2); -moz-box-shadow: -5px 0 5px rgba(50,50,50,.2); box-shadow: -5px 0 5px rgba(50,50,50,.2);}
 
-header#banner {background: #ccc;}
-header#banner h1 {font-size: 3em; font-family: 'Droid Sans', arial, serif;}
-header#banner h2 {margin: -.5em .3em;}
-header#banner nav li {float: right; margin: 0 1em; cursor: pointer;}
+header#banner {background: #aaa; color: #fff; padding: 1.4em;}
+header#banner h1 {font-size: 3em;}
+header#banner h2 {margin: -.5em .3em; font-weight: normal; font-family: 'Droid Sans', arial, serif;}
+header#banner nav li {float: right; margin: 0 1em; cursor: pointer; font-family: 'Droid Sans', arial, serif;}
+header#banner nav a {color: #fff; text-decoration: none; padding: .5em 1em;}
+header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-radius: 10px; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset;}
 
-#qNav li {float: left; width: 50%; text-align: center; display: block;}
-#qNav li:nth-of-type(even) {background: #1DB8B0;}
-#qNav li:nth-of-type(odd) {background: #7887BE;}
+#qNav li {float: left; width: 50%; display: block; cursor: pointer; font-family: 'Droid Sans', arial, serif;}
+#qNav li a {display: block; border-top: 2px solid #fff; color: #fff; text-decoration: none; padding: 1em 2em;}
+#qNav li:nth-of-type(even) a {background: #1DB8B0; border-left:2px solid #fff;}
+#qNav li:nth-of-type(odd) a {background: #7887BE;}
 
-#tagcloud {width: 100%;background: rgba(50,50,50,.6);  -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden; display: none;}
+#tagcloud {width: 100%;background: rgba(50,50,50,.6); padding: .5em; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.6) inset; -webkit-box-shadow: 0 5px 5px rgba(50,50,50,.6) inset; -moz-box-shadow: 0 5px 5px rgba(50,50,50,.6) inset; box-shadow: 0 5px 5px rgba(50,50,50,.6) inset; z-index: 1; overflow: hidden; display: none;}
 #tagcloud:focus, #tagcloud:active, #tagcloud:target, #tagcloud.selected {background: rgba(50,50,50,.9);}
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 1em;}
@@ -179,8 +182,8 @@ header#banner nav li {float: right; margin: 0 1em; cursor: pointer;}
 #quotelist::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {height: 50px; background-color: #9a9a9a; -webkit-border-radius: 5px;}
 #quotelist::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {background-color: #5e5e5e; -webkit-box-shadow: 0 0 2px #ccc;}
 
-#quotelist article {padding: 1.5em 10px; background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
-#quotelist article.selected {background: #444; color: #efefef;}
+#quotelist article {padding: 1.2em 1.5em; border-top: 1px dotted transparent;background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
+#quotelist article.selected {border-top: 1px dotted #aaa; border-bottom: 1px dotted #aaa;}
 #quotelist article img {position: absolute; bottom: 0; right: 105%; margin: 1em 0; opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
 #quotelist article.selected img {opacity: 1; z-index: 1;}
 #quotelist article img:active, #quotelist article img:focus {opacity: 0 !important;}
