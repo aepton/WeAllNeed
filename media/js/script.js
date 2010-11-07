@@ -34,9 +34,10 @@ $(document).ready(function() {
     });  
 	
 	//when we click on an article (a quote), we'll change the hash of the window to it's id
-	$('article').click(function(){
+	$('article').click(function(e){
 		var id = $(this).attr('id');
 		window.location.hash=id;
+		e.preventDefault();
 		return false;
 	});
 });
