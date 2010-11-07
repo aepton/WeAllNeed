@@ -1,0 +1,27 @@
+{
+"type": "FeatureCollection",
+"features": [
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Market", "rotate":"-45"}, "geometry": { "type": "Point", "coordinates": [ -122.4132, 37.77985 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Geary", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41963, 37.785835 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"O'Farrell", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41944, 37.784907 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Ellis", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41925, 37.783980  ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Eddy", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41906, 37.783049 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Turk", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41887, 37.782115 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Golden Gate", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41868, 37.781185 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"McAllister", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41849, 37.7802 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Grove", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41811, 37.77845 ] } },
+
+{ "type": "Feature", "properties": { "OBJECTID": 1.000000, "BLOCK_NUM": "0001", "street_name":"Hayes", "rotate":"-9.1"}, "geometry": { "type": "Point", "coordinates": [ -122.41792, 37.777455 ] } }
+
+
+
+]}
