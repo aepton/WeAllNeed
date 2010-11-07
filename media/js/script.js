@@ -37,5 +37,6 @@ $(document).ready(function() {
 	$('article').click(function(){
 		var id = $(this).attr('id');
 		window.location.hash=id;
+		return false;
 	});
 });
