@@ -47,28 +47,6 @@ var map;
 var svg;
 var base_json_url;
 
-function toggleNeed() {
-	if ($("p.need:visible").length) {
-		$("p.need").hide();
-		$("#need_btn").attr('style','opacity:0.4');
-	}
-	else {
-		$("p.need").show();
-		$("#need_btn").removeAttr('style');
-	}
-}
-
-function toggleThink() {
-	if ($("p.think:visible").length) {
-		$("p.think").hide();
-		$("#think_btn").attr('style','opacity:0.4');
-	}
-	else {
-		$("p.think").show();
-		$("#think_btn").removeAttr('style');
-	}
-}
-
 $(document).ready(function() {
 	
 	//when a quote is called for, we're going to make it the selected quote.
