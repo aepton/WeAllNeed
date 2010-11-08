@@ -20,6 +20,29 @@ function init () {
 window.onload = init;
 var po = org.polymaps;
 
+
+function toggleNeed() {
+	if ($("p.need:visible").length) {
+		$("p.need").hide();
+		$("#need_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.need").show();
+		$("#need_btn").removeAttr('style');
+	}
+}
+
+function toggleThink() {
+	if ($("p.think:visible").length) {
+		$("p.think").hide();
+		$("#think_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.think").show();
+		$("#think_btn").removeAttr('style');
+	}
+}
+
 var map;
 var svg;
 var base_json_url;
@@ -131,7 +154,14 @@ function getLatestQuotes() {
 				
 				article = $("<article id='quote"+quote.id+"'></article>");
 				
-				article.append($("<p class='person'><span class='name'>"+quote.person_name+"</span>, <span class='age'>"+quote.person_age+"</span></p>"))
+				article.append($("<p class='person'></p>"));
+				if (quote.person_name) {
+					article.find(".person").append("<span class='name'>"+quote.person_name+"</span>");
+				}
+				if (quote.person_age) {
+					article.find('.person').append(", <span class='age'>"+quote.person_age+"</span>");
+				}
+				
 				article.append($("<p class='think'>"+quote.quote_text + "</p>"));
 				article.append($("<p class='need'>"+quote.quote_text_alt + "</p>"));
 				
@@ -151,6 +181,10 @@ function getLatestQuotes() {
 					//return false;
 				});
 				
+				if (quote.audio_embed) {
+					article.find('.infobox').append(quote.audio_embed);
+				}
+				
 				$('.infobox').click(function(){
 					$(this).toggle(.001, 'normal');
 				});
@@ -159,7 +193,6 @@ function getLatestQuotes() {
 				
 				$("#quotelist").append(article);
 				
-				//console.log(article);
 				geo_features.push({geometry: {coordinates: [quote.long, quote.lat], type: "Point"}, properties:{"marker_id":quote.id}});
 			}
 			console.info(geo_features);
