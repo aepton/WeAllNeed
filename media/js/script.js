@@ -108,6 +108,7 @@ function getLatestQuotes() {
 		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
+			var geo_features = [];
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
 				
@@ -142,7 +143,12 @@ function getLatestQuotes() {
 				$("#quotelist").append(article);
 				
 				//console.log(article);
+				geo_features.push({geometry: {coordinates: [quote.long, quote.lat], type: "Point"}, properties:{"marker_id":quote.id}});
 			}
+			map.add(po.geoJson()
+			    .features(geo_features)
+				.on("load", loadPoints));
+			
 			
 		},
 		error: function() {
