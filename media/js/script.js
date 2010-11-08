@@ -165,4 +165,26 @@ function load(e) {
 	}
 }
 
+function loadPoints(e) {
+	for (var i = 0; i < e.features.length; i++) {
+		var c = n$(e.features[i].element),
+			g = c.parent().add("svg:g", c);
+
+		g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+
+		c.attr("opacity",0);
+		g.add("svg:image")
+			.attr("width", "32").attr("height", "45")
+			.attr("xlink:href", "media/images/pin.png")
+			.attr("style","fill:#ff0000;")
+			.attr("marker_id",e.features[i].data.properties.marker_id);
+		// g.attr("onclick",ddd);
+		g.element.addEventListener('click', pinClicked,false);
+		// c.)
+	}
+}
+function pinClicked(id) {
+	id_short = String(id.target.getAttribute('marker_id'));
+	window.location.hash = id_short;
+}
 

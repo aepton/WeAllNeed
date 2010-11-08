@@ -59,7 +59,12 @@ $(function(){
 		.tile(false)
 		.on("load", load));
 
-		
+	map.add(po.geoJson()
+		.url("street_names.json")
+		.id("points")
+		.tile(false)
+		.on("load", loadPoints));
+	
 		// po.stylist()
 			// .attr("fill", function(d) {return color(d.properties.value).color;})
 			// .title(function(d) {return "value: " + d.properties.value;})));
@@ -79,13 +84,13 @@ $(function(){
 	
 	function load(e) {
 		var fontSize = .6 * Math.pow(2, e.tile.zoom - 12);
-		console.info(fontSize);
+		// console.info(fontSize);
 		for (var i = 0; i < e.features.length; i++) {
 			var c = n$(e.features[i].element),
 				g = c.parent().add("svg:g", c);
 			
 			g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
-			console.info(c.attr("cx") + " " + c.attr("cy"));
+			// console.info(c.attr("cx") + " " + c.attr("cy"));
 			g.add("svg:text")
 				.attr("font-size", fontSize)
 				.attr("class", "street-names")
@@ -100,6 +105,28 @@ $(function(){
 		}
 	}
 
+	function loadPoints(e) {
+		for (var i = 0; i < e.features.length; i++) {
+			var c = n$(e.features[i].element),
+				g = c.parent().add("svg:g", c);
+
+			g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+
+			c.attr("opacity",0);
+			g.add("svg:image")
+				.attr("width", "32").attr("height", "45")
+				.attr("xlink:href", "media/images/pin.png")
+				.attr("style","fill:#ff0000;")
+				.attr("marker_id",e.features[i].data.properties.marker_id);
+			// g.attr("onclick",ddd);
+			g.element.addEventListener('click', pinClicked,false);
+			// c.)
+		}
+	}
+	function pinClicked(id) {
+		id_short = String(id.target.getAttribute('marker_id'));
+		window.location.hash = id_short;
+	}
 
 
 });
@@ -168,6 +195,12 @@ svg {
 	fill-opacity:1;
 	font-family:'Droid Sans', Helvetica;
 	font-weight:bold;
+}
+#points {
+	fill:#e22;
+	stroke-opacity:0;
+	stroke:#00f;
+	radius:10px;
 }
 #surrounding path {
 	fill-opacity:0;
