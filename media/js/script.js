@@ -124,8 +124,8 @@ function getLatestQuotes() {
 				article = $("<article id='quote"+quote.id+"'></article>");
 				
 				article.append($("<p class='person'><span class='name'>"+quote.person_name+"</span>, <span class='age'>"+quote.person_age+"</span></p>"))
-				article.append($("<p class='think'>"+quote.quote_text+"<small> - thought</small></p>"));
-				article.append($("<p class='need'>"+quote.quote_text_alt+"<small> - need</small></p>"));
+				article.append($("<p class='think'>"+quote.quote_text + "</p>"));
+				article.append($("<p class='need'>"+quote.quote_text_alt + "</p>"));
 				
 				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
 				
