@@ -179,7 +179,7 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #tagcloud.selected a {color: #444; font-size: 1em;}
 #tagcloud a:focus:not(.current), #tagcloud a:active:not(.current), #tagcloud a:hover:not(.current) {-webkit-transform: scale(1.3); -moz-transform: scale(1.3); transform: scale(1.3);}
 
-#quotelist {min-height: 480px; max-height: 100%; width: 100%; background: #efefef;font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
+#quotelist {min-height: 480px; height: 83%; width: 100%; background: #efefef;font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 
 #quotelist::-webkit-scrollbar {width: 8px; height: 8px; -webkit-transition: all 0.3s ease-in-out;}
 #quotelist::-webkit-scrollbar-button:start:decrement {-webkit-border-radius: 6px; height: 0px; display: block; background-color: transparent;}
@@ -195,8 +195,8 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist article .need {border-left:3px solid #7887BE}
 #quotelist article .think {border-left:3px solid #1DB8B0}
 #quotelist article .need:after, #quotelist article .think:after {font-size: .5em; margin: 0 0 .5em 0;}
-#quotelist article .need:after {content: "   need"; color: #7887BE;}
-#quotelist article .think:after {content: "   think"; color: #1DB8B0;}
+#quotelist article .need:after {content: "  \2014 need"; color: #7887BE;}
+#quotelist article .think:after {content: "  \2014 think"; color: #1DB8B0;}
 #quotelist article .highlight {font-weight: bold;}
 #quotelist article .think .highlight {color: #1DB8B0;}
 #quotelist article .need .highlight {color: #7887BE;}

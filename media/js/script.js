@@ -8,8 +8,11 @@ function init () {
 	else if (window.location.hash == "#filter_open") {
 		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
 	}
+	else if (window.location.hash == "#about_open") {
+		$('#about_text').slideToggle("fast", function () {$(this).toggleClass('selected')});
+	}
 	else if ($(document.location.hash.replace("sel_","")).length) {
-		s=$(document.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
+		s=$(window.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
 		eval(s);
 	}
 }
@@ -45,7 +48,13 @@ function toggleThink() {
 
 $(document).ready(function() {
 	
-	window.onhashchange = $(window.location.hash).toggleClass("selected")
+	//when a quote is called for, we're going to make it the selected quote.
+	function rm_false_hash () {
+		$("article.selected").removeClass("selected");
+		$(window.location.hash.replace("sel_","")).toggleClass("selected");
+		scroll_clipper.scrollTop = 0;
+	}
+	window.onhashchange = rm_false_hash;
 	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
@@ -206,6 +215,6 @@ function loadPoints(e) {
 }
 function pinClicked(id) {
 	id_short = "quote" + String(id.target.getAttribute('marker_id'));
-	window.location.hash = "quote" + id_short;
+	window.location.hash = id_short;
 }
 
