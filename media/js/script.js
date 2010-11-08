@@ -16,23 +16,23 @@ var po = org.polymaps;
 
 
 function toggleNeed() {
-	if ($("article.need:visible").length) {
-		$("article.need").hide();
+	if ($("p.need:visible").length) {
+		$("p.need").hide();
 		$("#need_btn").attr('style','opacity:0.4');
 	}
 	else {
-		$("article.need").show();
+		$("p.need").show();
 		$("#need_btn").removeAttr('style');
 	}
 }
 
 function toggleThink() {
-	if ($("article.think:visible").length) {
-		$("article.think").hide();
+	if ($("p.think:visible").length) {
+		$("p.think").hide();
 		$("#think_btn").attr('style','opacity:0.4');
 	}
 	else {
-		$("article.think").show();
+		$("p.think").show();
 		$("#think_btn").removeAttr('style');
 	}
 }
@@ -40,8 +40,8 @@ function toggleThink() {
 $(document).ready(function() {
 	
     //fitlering for the tagcloud
-	$('#tagcloud li a, #qNav li a').click(function() {
-		//var filterVal = $(this).text().toLowerCase().replace(' ','-');
+	$('#tagcloud li a').click(function() {
+		var filterVal = $(this).text().toLowerCase().replace(' ','-');
 		window.location.hash = filterVal;
   
         if(filterVal == 'all') {  
@@ -105,14 +105,8 @@ function getLatestQuotes() {
 			console.log(data);
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
-				console.log(quote.tags);
+				
 				article = $("<article id='quote"+quote.id+"'></article>");
-				if (quote.use_first_question) {
-					article.addClass("think");
-				}
-				else {
-					article.addClass("need");
-				}
 				
 				for (j=0; j < quote.tags.length; j++) {
 					article.addClass(quote.tags[j]);
