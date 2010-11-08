@@ -176,7 +176,7 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #tagcloud.selected a {color: #444; font-size: 1em;}
 #tagcloud a:focus:not(.current), #tagcloud a:active:not(.current), #tagcloud a:hover:not(.current) {-webkit-transform: scale(1.3); -moz-transform: scale(1.3); transform: scale(1.3);}
 
-#quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
+#quotelist {min-height: 480px; max-height: 100%; width: 100%; background: #efefef;font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 
 #quotelist::-webkit-scrollbar {width: 8px; height: 8px; -webkit-transition: all 0.3s ease-in-out;}
 #quotelist::-webkit-scrollbar-button:start:decrement {-webkit-border-radius: 6px; height: 0px; display: block; background-color: transparent;}
@@ -185,8 +185,19 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {height: 50px; background-color: #9a9a9a; -webkit-border-radius: 5px;}
 #quotelist::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {background-color: #5e5e5e; -webkit-box-shadow: 0 0 2px #ccc;}
 
-#quotelist article {padding: 1.2em 1.5em; border-top: 1px dotted transparent;background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
-#quotelist article.selected {border-top: 1px dotted #aaa; border-bottom: 1px dotted #aaa;}
+#quotelist article {padding: 1.2em 1.5em;  color: #666; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
+#quotelist article.selected {color: #444;}
+
+#quotelist article .need, #quotelist article .think {margin: .5em 0 0 -1em; padding: 0 0 0 1em ;}
+#quotelist article .need {border-left:3px solid #7887BE}
+#quotelist article .think {border-left:3px solid #1DB8B0}
+#quotelist article .need:after, #quotelist article .think:after {font-size: .5em; margin: 0 0 .5em 0;}
+#quotelist article .need:after {content: "   need"; color: #7887BE;}
+#quotelist article .think:after {content: "   think"; color: #1DB8B0;}
+
+#quotelist article p.person {font-family: 'Droid Sans', arial, serif; font-size: .5em; color: #888;}
+#quotelist article.selected p.person {font-weight: bold; font-size: 1em; color: #444;}
+
 #quotelist article .infobox {position: absolute; bottom: 0; right: 105%; margin: 1em 0; background: #fff; padding: 10px; border: 1px solid #aaa;opacity: 0; -webkit-transition: opacity ease-in 0.4s; -moz-transition: opacity ease-in 0.4s; transition: opacity ease-in 0.4s; -webkit-box-shadow: 0 0 10px rgba(50,50,50,.5); -moz-box-shadow: 0 0 10px rgba(50,50,50,.5); box-shadow: 0 0 10px rgba(50,50,50,.5); cursor: auto; z-index: -1;}
 #quotelist article.selected .infobox {opacity: 1; z-index: 100;}
 #quotelist article .infobox:active, #quotelist article .infobox:focus {opacity: 0 !important;}
