@@ -313,7 +313,7 @@ class JSON (webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/add_data', AddData),
-                                     ('/data_form', DataForm),
+                                     #('/data_form', DataForm),
                                      ('/quotes', JSON),
                                      ('/generate_tags', GenerateTagsAttribute),
                                      ('/view_data', ViewData),
