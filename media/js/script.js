@@ -14,11 +14,34 @@ function init () {
 window.onload = init;
 var po = org.polymaps;
 
+
+function toggleNeed() {
+	if ($("article.need:visible").length) {
+		$("article.need").hide();
+		$("#need_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("article.need").show();
+		$("#need_btn").removeAttr('style');
+	}
+}
+
+function toggleThink() {
+	if ($("article.think:visible").length) {
+		$("article.think").hide();
+		$("#think_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("article.think").show();
+		$("#think_btn").removeAttr('style');
+	}
+}
+
 $(document).ready(function() {
 	
     //fitlering for the tagcloud
-	$('#tagcloud li a').click(function() {
-		var filterVal = $(this).text().toLowerCase().replace(' ','-');
+	$('#tagcloud li a, #qNav li a').click(function() {
+		//var filterVal = $(this).text().toLowerCase().replace(' ','-');
 		window.location.hash = filterVal;
   
         if(filterVal == 'all') {  
@@ -82,6 +105,7 @@ function getLatestQuotes() {
 			console.log(data);
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
+				console.log(quote.tags);
 				article = $("<article id='quote"+quote.id+"'></article>");
 				if (quote.use_first_question) {
 					article.addClass("think");
@@ -89,10 +113,13 @@ function getLatestQuotes() {
 				else {
 					article.addClass("need");
 				}
-				$(quote.tags).each(function(tag) {
-					article.addClass(tag);
-				});
-				article.append(quote.quote_text);
+				
+				for (j=0; j < quote.tags.length; j++) {
+					article.addClass(quote.tags[j]);
+				}
+				article.append($("<p class='person'><span class='name'>"+quote.person_name+"</span>, <span class='age'>"+quote.person_age+"</span></p>"))
+				article.append($("<p class='think'>"+quote.quote_text+"</p>"));
+				article.append($("<p class='need'>"+quote.quote_text_alt+"</p>"));
 				
 				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
 				
@@ -108,7 +135,8 @@ function getLatestQuotes() {
 				});
 				
 				$("#quotelist").append(article);
-				console.log(article);
+				$("#quotelist").append($("<hr />"));
+				//console.log(article);
 			}
 			
 		},
