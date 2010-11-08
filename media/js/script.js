@@ -5,6 +5,9 @@ function init () {
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
+	else if (window.location.hash == "#filter_open") {
+		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
+	}
 	else if ($(document.location.hash.replace("sel_","")).length) {
 		s=$(document.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
 		eval(s);
@@ -14,10 +17,35 @@ function init () {
 window.onload = init;
 var po = org.polymaps;
 
+
+function toggleNeed() {
+	if ($("p.need:visible").length) {
+		$("p.need").hide();
+		$("#need_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.need").show();
+		$("#need_btn").removeAttr('style');
+	}
+}
+
+function toggleThink() {
+	if ($("p.think:visible").length) {
+		$("p.think").hide();
+		$("#think_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.think").show();
+		$("#think_btn").removeAttr('style');
+	}
+}
+
 $(document).ready(function() {
 	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
+		$('#tagcloud li a').removeClass("current");
+		$(this).addClass("current");
 		var filterVal = $(this).text().toLowerCase().replace(' ','-');
 		window.location.hash = filterVal;
   
@@ -82,17 +110,15 @@ function getLatestQuotes() {
 			console.log(data);
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
+				
 				article = $("<article id='quote"+quote.id+"'></article>");
-				if (quote.use_first_question) {
-					article.addClass("think");
+				
+				for (j=0; j < quote.tags.length; j++) {
+					article.addClass(quote.tags[j]);
 				}
-				else {
-					article.addClass("need");
-				}
-				$(quote.tags).each(function(tag) {
-					article.addClass(tag);
-				});
-				article.append(quote.quote_text);
+				article.append($("<p class='person'><span class='name'>"+quote.person_name+"</span>, <span class='age'>"+quote.person_age+"</span></p>"))
+				article.append($("<p class='think'>"+quote.quote_text+"</p>"));
+				article.append($("<p class='need'>"+quote.quote_text_alt+"</p>"));
 				
 				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
 				
@@ -108,7 +134,8 @@ function getLatestQuotes() {
 				});
 				
 				$("#quotelist").append(article);
-				console.log(article);
+				$("#quotelist").append($("<hr />"));
+				//console.log(article);
 			}
 			
 		},
@@ -137,4 +164,26 @@ function load(e) {
 	}
 }
 
+function loadPoints(e) {
+	for (var i = 0; i < e.features.length; i++) {
+		var c = n$(e.features[i].element),
+			g = c.parent().add("svg:g", c);
+
+		g.attr("transform", "translate(" + c.attr("cx") + "," + c.attr("cy") + ")");
+
+		c.attr("opacity",0);
+		g.add("svg:image")
+			.attr("width", "32").attr("height", "45")
+			.attr("xlink:href", "media/images/pin.png")
+			.attr("style","fill:#ff0000;")
+			.attr("marker_id",e.features[i].data.properties.marker_id);
+		// g.attr("onclick",ddd);
+		g.element.addEventListener('click', pinClicked,false);
+		// c.)
+	}
+}
+function pinClicked(id) {
+	id_short = String(id.target.getAttribute('marker_id'));
+	window.location.hash = id_short;
+}
 
