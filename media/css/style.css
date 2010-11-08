@@ -166,13 +166,15 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #qNav li:nth-of-type(even) a {background: #1DB8B0; border-left:2px solid #fff;}
 #qNav li:nth-of-type(odd) a {background: #7887BE;}
 
-#tagcloud {width: 100%; padding: 1em; -webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; -webkit-box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; -moz-box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; display: none;}
+#tagcloud {width: 100%; padding: 1em; line-height: 1.3em;-webkit-transition: all 0.6s; -moz-transition: all 0.6s; transition: all 0.6s; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.3) inset; -webkit-box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; -moz-box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; box-shadow: 0 5px 5px rgba(50,50,50,.3) inset; display: none;}
 #tagcloud:focus, #tagcloud:active, #tagcloud:target, #tagcloud.selected {background: rgba(50,50,50,.2);}
 #tagcloud ul {display: block;}
 #tagcloud li {list-style: none; float: left; margin: 0 1em;}
-#tagcloud a {color: #aaa; text-decoration: none;}
+#tagcloud a {color: #aaa; text-decoration: none; display: block;}
+#tagcloud li a.current {color: #7887BE; text-shadow: 2px 2px #fff; font-size: 1.3em;}
+#tagcloud li a.current:hover {opacity: .9;}
 #tagcloud.selected a {color: #444; font-size: 1em;}
-#tagcloud li:focus, #tagcloud li:active, #tagcloud li:hover {-webkit-transform: scale(1.3);}
+#tagcloud a:focus:not(.current), #tagcloud a:active:not(.current), #tagcloud a:hover:not(.current) {-webkit-transform: scale(1.3); -moz-transform: scale(1.3); transform: scale(1.3);}
 
 #quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 

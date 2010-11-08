@@ -5,6 +5,9 @@ function init () {
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
 	}
+	else if (window.location.hash == "#filter_open") {
+		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
+	}
 	else if ($(document.location.hash.replace("sel_","")).length) {
 		s=$(document.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
 		eval(s);
@@ -18,6 +21,8 @@ $(document).ready(function() {
 	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
+		$('#tagcloud li a').removeClass("current");
+		$(this).addClass("current");
 		var filterVal = $(this).text().toLowerCase().replace(' ','-');
 		window.location.hash = filterVal;
   
