@@ -113,14 +113,18 @@ function getLatestQuotes() {
 				
 				article = $("<article id='quote"+quote.id+"'></article>");
 				
-				for (j=0; j < quote.tags.length; j++) {
-					article.addClass(quote.tags[j]);
-				}
 				article.append($("<p class='person'><span class='name'>"+quote.person_name+"</span>, <span class='age'>"+quote.person_age+"</span></p>"))
-				article.append($("<p class='think'>"+quote.quote_text+"</p>"));
-				article.append($("<p class='need'>"+quote.quote_text_alt+"</p>"));
+				article.append($("<p class='think'>"+quote.quote_text+"<small> - thought</small></p>"));
+				article.append($("<p class='need'>"+quote.quote_text_alt+"<small> - need</small></p>"));
 				
 				article.append($("<div class='infobox'><img src='"+quote.photo_url+"' alt='"+quote.person_name+"'>"));
+				
+				for (j=0; j < quote.tags.length; j++) {
+					article.addClass(quote.tags[j]);
+					article.find('p.need, p.think').each(function() {
+						$(this).html($(this).html().replace(quote.tags[j], "<span class='highlight'>"+quote.tags[j]+"</span>"));
+					})
+				}
 				
 				article.click(function(){
 					$("article").removeClass('selected');
@@ -133,8 +137,10 @@ function getLatestQuotes() {
 					$(this).toggle(.001, 'normal');
 				});
 				
+				article.append($("<hr />"));
+				
 				$("#quotelist").append(article);
-				$("#quotelist").append($("<hr />"));
+				
 				//console.log(article);
 			}
 			
