@@ -21,31 +21,31 @@ var map;
 var svg;
 var base_json_url;
 
+function toggleNeed() {
+	if ($("p.need:visible").length) {
+		$("p.need").hide();
+		$("#need_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.need").show();
+		$("#need_btn").removeAttr('style');
+	}
+}
+
+function toggleThink() {
+	if ($("p.think:visible").length) {
+		$("p.think").hide();
+		$("#think_btn").attr('style','opacity:0.4');
+	}
+	else {
+		$("p.think").show();
+		$("#think_btn").removeAttr('style');
+	}
+}
+
 $(document).ready(function() {
 	
 	window.onhashchange = $(window.location.hash).toggleClass("selected")
-	
-	function toggleNeed() {
-		if ($("p.need:visible").length) {
-			$("p.need").hide();
-			$("#need_btn").attr('style','opacity:0.4');
-		}
-		else {
-			$("p.need").show();
-			$("#need_btn").removeAttr('style');
-		}
-	}
-
-	function toggleThink() {
-		if ($("p.think:visible").length) {
-			$("p.think").hide();
-			$("#think_btn").attr('style','opacity:0.4');
-		}
-		else {
-			$("p.think").show();
-			$("#think_btn").removeAttr('style');
-		}
-	}
 	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {

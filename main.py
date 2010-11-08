@@ -8,6 +8,7 @@ import time
 import operator
 from google.appengine.api import urlfetch
 import urllib
+import sys
 
 class QuoteObject(db.Model):
     quote_text = db.StringProperty(multiline=True)
@@ -20,7 +21,7 @@ class QuoteObject(db.Model):
     audio_url = db.LinkProperty()
     tags = db.StringListProperty()
     use_first_question = db.BooleanProperty()
-    audio_embed = db.TextProperty()
+    audio_embed = db.StringProperty()
 
 
 class MainPage(webapp.RequestHandler):
@@ -135,12 +136,14 @@ class GenerateAudioEmbed(webapp.RequestHandler):
         for result in results:
             try:
                 fetchresult = urlfetch.fetch(str(soundcloud_url+result.audio_url+'&format=json'))
-                result.audio_embed = urllib.decode(fetchresult.content['html'])
-                result.put()
-                self.response.out.write(urllib.decode(fetchresult.content['html']))
-                self.response.out.write('---')
+                #result.audio_embed = urllib.decode(fetchresult.content['html'])
+                #result.put()
+                #self.response.out.write(urllib.decode(fetchresult.content['html']))
+                self.response.out.write('---\n')
+                self.response.out.write(fetchresult.content.keys())
             except:
-                self.response.out.write('No! %s' % result.person_name)
+                self.response.out.write('No - %s! %s' % (sys.exc_info()[0],
+                                                         result.person_name))
 #           result.audio_embed
 #           result.put()
 
