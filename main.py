@@ -6,6 +6,8 @@ from django.utils import simplejson
 import datetime
 import time
 import operator
+from google.appengine.api import urlfetch
+import urllib
 
 class QuoteObject(db.Model):
     quote_text = db.StringProperty(multiline=True)
@@ -18,6 +20,7 @@ class QuoteObject(db.Model):
     audio_url = db.LinkProperty()
     tags = db.StringListProperty()
     use_first_question = db.BooleanProperty()
+    audio_embed = db.TextProperty()
 
 
 class MainPage(webapp.RequestHandler):
@@ -123,6 +126,24 @@ class AddData(webapp.RequestHandler):
         quote.put()
         self.redirect('/data_form')
 
+class GenerateAudioEmbed(webapp.RequestHandler):
+    def get(self):
+        query = QuoteObject.all()
+        results = query.fetch(limit=200)
+        self.response.headers['Content-Type'] = 'text/plain'
+        soundcloud_url = 'http://api.soundcloud.com/oembed?url='
+        for result in results:
+            try:
+                fetchresult = urlfetch.fetch(str(soundcloud_url+result.audio_url+'&format=json'))
+                result.audio_embed = urllib.decode(fetchresult.content['html'])
+                result.put()
+                self.response.out.write(urllib.decode(fetchresult.content['html']))
+                self.response.out.write('---')
+            except:
+                self.response.out.write('No! %s' % result.person_name)
+#           result.audio_embed
+#           result.put()
+
 class GenerateTagsAttribute(webapp.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -180,8 +201,8 @@ class ViewData(webapp.RequestHandler):
         self.response.out.write('<html><head><title>All entries</title>')
         self.response.out.write('</head><body>')
         for result in results:
-            self.response.out.write('<a href=%s%d>%d</a><br>' % (
-				link, result.key().id(), result.key().id()))
+            self.response.out.write('<a href=%s%d>%d - %s</a><br>' % (
+                link, result.key().id(), result.key().id(), result.person_name))
         self.response.out.write('</body></html>')
 
 class DataForm(webapp.RequestHandler):
@@ -293,6 +314,7 @@ application = webapp.WSGIApplication(
                                      ('/quotes', JSON),
                                      ('/generate_tags', GenerateTagsAttribute),
                                      ('/view_data', ViewData),
+                                     ('/generate_audio_embed', GenerateAudioEmbed),
                                      ('/', MainPage)])
 
 def main():
