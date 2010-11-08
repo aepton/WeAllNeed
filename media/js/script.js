@@ -145,6 +145,7 @@ function getLatestQuotes() {
 				//console.log(article);
 				geo_features.push({geometry: {coordinates: [quote.long, quote.lat], type: "Point"}, properties:{"marker_id":quote.id}});
 			}
+			console.info(geo_features);
 			map.add(po.geoJson()
 			    .features(geo_features)
 				.on("load", loadPoints));
