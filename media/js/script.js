@@ -23,6 +23,8 @@ var base_json_url;
 
 $(document).ready(function() {
 	
+	window.onhashchange = $(window.location.hash).toggleClass("selected")
+	
 	function toggleNeed() {
 		if ($("p.need:visible").length) {
 			$("p.need").hide();
@@ -204,6 +206,6 @@ function loadPoints(e) {
 }
 function pinClicked(id) {
 	id_short = String(id.target.getAttribute('marker_id'));
-	window.location.hash = id_short;
+	window.location.hash = "quote" + id_short;
 }
 
