@@ -205,7 +205,7 @@ function loadPoints(e) {
 	}
 }
 function pinClicked(id) {
-	id_short = String(id.target.getAttribute('marker_id'));
+	id_short = "quote" + String(id.target.getAttribute('marker_id'));
 	window.location.hash = "quote" + id_short;
 }
 

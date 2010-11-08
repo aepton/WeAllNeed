@@ -196,6 +196,9 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist article .need:after, #quotelist article .think:after {font-size: .5em; margin: 0 0 .5em 0;}
 #quotelist article .need:after {content: "   need"; color: #7887BE;}
 #quotelist article .think:after {content: "   think"; color: #1DB8B0;}
+#quotelist article .highlight {font-weight: bold;}
+#quotelist article .think .highlight {color: #1DB8B0;}
+#quotelist article .need .highlight {color: #7887BE;}
 
 #quotelist article p.person {font-family: 'Droid Sans', arial, serif; font-size: .5em; color: #888;}
 #quotelist article.selected p.person {font-weight: bold; font-size: 1em; color: #444;}
