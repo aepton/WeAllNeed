@@ -174,19 +174,22 @@ function getLatestQuotes() {
 					})
 				}
 				
-				article.click(function(){
-					$("article").removeClass('selected');
-					$(this).addClass('selected');
-					document.location.hash="sel_"+$(this).attr("id");
-					//return false;
-				});
-				
 				if (quote.audio_embed) {
 					article.find('.infobox').append(quote.audio_embed);
+					article.find('object').hide();
 				}
 				
 				$('.infobox').click(function(){
 					$(this).toggle(.001, 'normal');
+				});
+				
+				article.click(function(){
+					$("article").removeClass('selected');
+					$("article object").hide();
+					$(this).addClass('selected');
+					document.location.hash="sel_"+$(this).attr("id");
+					$(this).find('object').show();
+					//return false;
 				});
 				
 				article.append($("<hr />"));
