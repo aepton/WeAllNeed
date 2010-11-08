@@ -40,6 +40,10 @@ function toggleThink() {
 	}
 }
 
+var map;
+var svg;
+var base_json_url;
+
 $(document).ready(function() {
 	
     //fitlering for the tagcloud
@@ -73,9 +77,9 @@ $(document).ready(function() {
 	
 	getLatestQuotes();
 	
-	var base_json_url = "media/js/static_json/";
-	var svg = n$("#map").add("svg:svg");
-	var map = po.map()
+	base_json_url = "media/js/static_json/";
+	svg = n$("#map").add("svg:svg");
+	map = po.map()
 	    .container($n(svg))
 		.center({lat:37.7818, lon:-122.4154})
 		.zoom(16)
@@ -108,6 +112,7 @@ function getLatestQuotes() {
 		dataType:'jsonp',
 		success: function(data) {
 			console.log(data);
+			var geo_features = [];
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
 				
@@ -142,7 +147,13 @@ function getLatestQuotes() {
 				$("#quotelist").append(article);
 				
 				//console.log(article);
+				geo_features.push({geometry: {coordinates: [quote.long, quote.lat], type: "Point"}, properties:{"marker_id":quote.id}});
 			}
+			console.info(geo_features);
+			map.add(po.geoJson()
+			    .features(geo_features)
+				.on("load", loadPoints));
+			
 			
 		},
 		error: function() {
@@ -182,13 +193,14 @@ function loadPoints(e) {
 			.attr("width", "32").attr("height", "45")
 			.attr("xlink:href", "media/images/pin.png")
 			.attr("style","fill:#ff0000;")
-			.attr("marker_id",e.features[i].data.properties.marker_id);
+			.attr("marker_id",e.features[i].data.properties.id);
 		// g.attr("onclick",ddd);
 		g.element.addEventListener('click', pinClicked,false);
 		// c.)
 	}
 }
 function pinClicked(id) {
+	console.log('tst');
 	id_short = String(id.target.getAttribute('marker_id'));
 	window.location.hash = id_short;
 }
