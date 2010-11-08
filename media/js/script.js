@@ -52,7 +52,6 @@ $(document).ready(function() {
 	function rm_false_hash () {
 		$("article.selected").removeClass("selected");
 		$(window.location.hash.replace("sel_","")).toggleClass("selected");
-		scroll_clipper.scrollTop = 0;
 	}
 	window.onhashchange = rm_false_hash;
 	
