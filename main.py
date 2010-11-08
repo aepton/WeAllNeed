@@ -21,7 +21,7 @@ class QuoteObject(db.Model):
     audio_url = db.LinkProperty()
     tags = db.StringListProperty()
     use_first_question = db.BooleanProperty()
-    audio_embed = db.StringProperty()
+    audio_embed = db.StringProperty(multiline=True)
 
 
 class MainPage(webapp.RequestHandler):
