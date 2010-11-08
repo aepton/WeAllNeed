@@ -63,6 +63,8 @@ $(document).ready(function() {
 	function rm_false_hash () {
 		$("article.selected").removeClass("selected");
 		$(window.location.hash.replace("sel_","")).toggleClass("selected");
+		//Google Analytics Tracking for Clicking a Quote. Dunno if this will work, dunno if this is the right place for it. -JB
+		_gaq.push(['_trackEvent', 'Hash Changed', 'Clicked a Quote']);
 	}
 	window.onhashchange = rm_false_hash;
 	
@@ -81,10 +83,6 @@ $(document).ready(function() {
                     $(this).fadeOut('fast').addClass('hidden');  
                 } else {  
                     $(this).slideDown('normal').removeClass('hidden');
- 					//TODO: this if statement should set the hash to the id of the quote if there is only one quote of that type
-					if ($(filterVal).length == 1) {
-						window.location.hash = this.attr('id');
-					}
                 }
             });  
         }
@@ -135,7 +133,7 @@ function getLatestQuotes() {
 		url: 'http://tenderneeds.appspot.com/quotes',
 		dataType:'jsonp',
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			var geo_features = [];
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
@@ -194,7 +192,7 @@ function getLatestQuotes() {
 			
 		},
 		error: function() {
-			console.log("error");
+//			console.log("error");
 		}
 	});
 }
