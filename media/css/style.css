@@ -176,7 +176,7 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #tagcloud.selected a {color: #444; font-size: 1em;}
 #tagcloud a:focus:not(.current), #tagcloud a:active:not(.current), #tagcloud a:hover:not(.current) {-webkit-transform: scale(1.3); -moz-transform: scale(1.3); transform: scale(1.3);}
 
-#quotelist {min-height: 480px; max-height: 100%; width: 100%; font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
+#quotelist {min-height: 480px; max-height: 100%; width: 100%; background: #efefef;font-size: 2em; margin: 1em 0;overflow-y: scroll; overflow-x: hidden;}
 
 #quotelist::-webkit-scrollbar {width: 8px; height: 8px; -webkit-transition: all 0.3s ease-in-out;}
 #quotelist::-webkit-scrollbar-button:start:decrement {-webkit-border-radius: 6px; height: 0px; display: block; background-color: transparent;}
@@ -185,8 +185,8 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {height: 50px; background-color: #9a9a9a; -webkit-border-radius: 5px;}
 #quotelist::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {background-color: #5e5e5e; -webkit-box-shadow: 0 0 2px #ccc;}
 
-#quotelist article {padding: 1.2em 1.5em; background: #fff; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
-#quotelist article.selected {}
+#quotelist article {padding: 1.2em 1.5em;  color: #666; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
+#quotelist article.selected {color: #444;}
 
 #quotelist article .need, #quotelist article .think {margin: .5em 0 0 -1em; padding: 0 0 0 1em ;}
 #quotelist article .need {border-left:3px solid #7887BE}
