@@ -8,17 +8,21 @@ function setQuoteListHeight() {
 }
 
 function init () {
-	if (window.location.hash == ""){
+	var h = window.location.hash;
+	if (h == ""){
 		window.location.hash='#intro';
 	}
-	else if (window.location.hash == "#filter_open") {
+	else if (h == "#filter_open") {
 		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
 	}
-	else if (window.location.hash == "#about_open") {
+	else if (h == "#about_open") {
 		$('#about_text').slideToggle("fast", function () {$(this).toggleClass('selected')});
 	}
-	else if ($(document.location.hash.replace("sel_","")).length) {
-		s=$(window.location.hash.replace("sel_","")).addClass('selected').attr("href").replace("javascript:","");
+	//TODO this should catch all hashes with "sel_" and added the "selected" class to the right object
+	else // ($(window.location.hash.replace("sel_","")).length) 
+	{
+		//window.location.hash = $(h.replace("sel_",""));
+		s=$(h).addClass('selected');
 		eval(s);
 	}
 }
@@ -63,8 +67,6 @@ $(document).ready(function() {
 	function rm_false_hash () {
 		$("article.selected").removeClass("selected");
 		$(window.location.hash.replace("sel_","")).toggleClass("selected");
-		//Google Analytics Tracking for Clicking a Quote. Dunno if this will work, dunno if this is the right place for it. -JB
-		_gaq.push(['_trackEvent', 'Hash Changed', 'Clicked a Quote']);
 	}
 	window.onhashchange = rm_false_hash;
 	
@@ -133,7 +135,7 @@ function getLatestQuotes() {
 		url: 'http://tenderneeds.appspot.com/quotes',
 		dataType:'jsonp',
 		success: function(data) {
-//			console.log(data);
+			//log(data);
 			var geo_features = [];
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
@@ -165,16 +167,18 @@ function getLatestQuotes() {
 					article.find('object').hide();
 				}
 				
-				$('.infobox').click(function(){
-					$(this).toggle(.001, 'normal');
+				$('.infobox .close').click(function(){
+					$(this).fadeOut('slow');
 				});
 				
-				article.click(function(){
+				article.click(function(e){
 					$("article").removeClass('selected');
 					$("article object").hide();
 					$(this).addClass('selected');
 					document.location.hash="sel_"+$(this).attr("id");
 					$(this).find('object').show();
+					//Google Analytics Tracking for Clicking a Quote.
+					_gaq.push(['_trackEvent', 'Hash Changed', 'Clicked a Quote']);
 					//return false;
 				});
 				
@@ -192,7 +196,7 @@ function getLatestQuotes() {
 			
 		},
 		error: function() {
-//			console.log("error");
+			log("error");
 		}
 	});
 }
