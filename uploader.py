@@ -50,11 +50,13 @@ def main():
         if len(split_line) != 7:
             print 'NOT 7 FIELDS - %d: %s' % (len(split_line), split_line)
             counter += 1
-            continue
+            #continue
         entry = {'quote_text': split_line[5], 'quote_text_alt': split_line[6],
                  'person_name': split_line[1], 'location_lat': split_line[3], 
                  'location_long': split_line[4], 'person_age': split_line[2]}
-        entry['photo_url'] = 'http://nothing.com'
+        entry['photo_url'] = 'http://www.flickr.com/photos/40397925@N00/5152835892/in/set-72157625202695917/'
+        entry['use_first_question'] = "True"
+        entry['audio_url'] = 'http://nothing.com'
         formatted_entry = urllib.urlencode(entry)
         try:
             request = urllib2.Request('http://tenderneeds.appspot.com/add_data',
@@ -63,7 +65,6 @@ def main():
             print connection.read()
         except:
             print entry
-    print 'Need to manually enter %d lines' % d
 
 if __name__ == '__main__':
     main()
