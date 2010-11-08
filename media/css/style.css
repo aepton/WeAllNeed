@@ -158,6 +158,8 @@ header#banner {background: #aaa; color: #fff; padding: 1.4em;}
 header#banner h1 {font-size: 3em;}
 header#banner h2 {margin: -.5em .3em; font-weight: normal; font-family: 'Droid Sans', arial, serif;}
 header#banner nav li {float: right; margin: 0 1em; cursor: pointer; font-family: 'Droid Sans', arial, serif;}
+header#banner nav #about_text {position: absolute; background: rgba(50,50,50,.8); padding: 1em; border-radius: 10px; -moz-border-radius: 10px; width: 300px; right: 10px; display: none;}
+header#banner nav #about_text p {margin: 1em;}
 header#banner nav a {color: #fff; text-decoration: none; padding: .5em 1em;}
 header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-radius: 10px; -webkit-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset; -moz-box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset; box-shadow: 0 -5px 5px rgba(50,50,50,.1) inset, 0 2px 2px rgba(200,200,200,.4) inset;}
 
@@ -186,7 +188,7 @@ header#banner nav a:hover {background: #999; border-radius: 10px; -moz-border-ra
 #quotelist::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {background-color: #5e5e5e; -webkit-box-shadow: 0 0 2px #ccc;}
 
 #quotelist article {padding: 1.2em 1.5em;  color: #666; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; cursor: pointer;}
-#quotelist article.selected {color: #444;}
+#quotelist article.selected {color: #444; background: #fff;}
 
 #quotelist article .need, #quotelist article .think {margin: .5em 0 0 -1em; padding: 0 0 0 1em ;}
 #quotelist article .need {border-left:3px solid #7887BE}

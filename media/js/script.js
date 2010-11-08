@@ -17,34 +17,33 @@ function init () {
 window.onload = init;
 var po = org.polymaps;
 
-
-function toggleNeed() {
-	if ($("p.need:visible").length) {
-		$("p.need").hide();
-		$("#need_btn").attr('style','opacity:0.4');
-	}
-	else {
-		$("p.need").show();
-		$("#need_btn").removeAttr('style');
-	}
-}
-
-function toggleThink() {
-	if ($("p.think:visible").length) {
-		$("p.think").hide();
-		$("#think_btn").attr('style','opacity:0.4');
-	}
-	else {
-		$("p.think").show();
-		$("#think_btn").removeAttr('style');
-	}
-}
-
 var map;
 var svg;
 var base_json_url;
 
 $(document).ready(function() {
+	
+	function toggleNeed() {
+		if ($("p.need:visible").length) {
+			$("p.need").hide();
+			$("#need_btn").attr('style','opacity:0.4');
+		}
+		else {
+			$("p.need").show();
+			$("#need_btn").removeAttr('style');
+		}
+	}
+
+	function toggleThink() {
+		if ($("p.think:visible").length) {
+			$("p.think").hide();
+			$("#think_btn").attr('style','opacity:0.4');
+		}
+		else {
+			$("p.think").show();
+			$("#think_btn").removeAttr('style');
+		}
+	}
 	
     //fitlering for the tagcloud
 	$('#tagcloud li a').click(function() {
@@ -73,6 +72,10 @@ $(document).ready(function() {
 	
 	$('nav #filters').click(function() {
 		$('#tagcloud').slideToggle("fast", function () {$(this).toggleClass('selected')});
+	});
+	
+	$('nav #about').click(function() {
+		$('#about_text').slideToggle("fast", function () {$(this).toggleClass('selected')});
 	});
 	
 	getLatestQuotes();
