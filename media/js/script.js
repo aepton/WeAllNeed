@@ -1,6 +1,12 @@
 /* Author: Joey Baker
 
 */
+
+function setQuoteListHeight() {
+	var h = $(window).height() - $('#top').height() - 40;
+	$('#quotelist').height(h);
+}
+
 function init () {
 	if (window.location.hash == ""){
 		window.location.hash='#intro';
@@ -18,7 +24,7 @@ function init () {
 }
 //onload, we'll call the init function.
 window.onload = init;
-var po = org.polymaps;
+window.onresize = setQuoteListHeight;
 
 
 function toggleNeed() {
@@ -43,11 +49,15 @@ function toggleThink() {
 	}
 }
 
-var map;
-var svg;
-var base_json_url;
+var po = org.polymaps,
+	map,
+	svg,
+	base_json_url
+;
 
 $(document).ready(function() {
+	
+	setQuoteListHeight();
 	
 	//when a quote is called for, we're going to make it the selected quote.
 	function rm_false_hash () {
