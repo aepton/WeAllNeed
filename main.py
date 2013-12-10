@@ -2,7 +2,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api import users
 from google.appengine.ext import db
-from django.utils import simplejson
+import json
 import datetime
 import time
 import operator
@@ -21,7 +21,7 @@ class QuoteObject(db.Model):
     audio_url = db.LinkProperty()
     tags = db.StringListProperty()
     use_first_question = db.BooleanProperty()
-    audio_embed = db.StringProperty(multiline=True)
+    audio_embed = db.TextProperty()
 
 
 class MainPage(webapp.RequestHandler):
@@ -268,7 +268,7 @@ class JSON (webapp.RequestHandler):
             self.response.out.write(self.request.get("callback")+"(")
         for result in results:
             json_out.append(self.to_dict(result))
-        resp = simplejson.dumps(json_out, separators=(',',':'))
+        resp = json.dumps(json_out, separators=(',',':'))
         self.response.out.write(resp)
 #        self.response.out.write('[')
 #        for out in json_out[:-1]:

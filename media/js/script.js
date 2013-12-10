@@ -18,12 +18,11 @@ function init () {
 	else if (h == "#about_open") {
 		$('#about_text').slideToggle("fast", function () {$(this).toggleClass('selected')});
 	}
-	//TODO this should catch all hashes with "sel_" and added the "selected" class to the right object
-	else // ($(window.location.hash.replace("sel_","")).length) 
-	{
-		//window.location.hash = $(h.replace("sel_",""));
-		s=$(h).addClass('selected');
-		eval(s);
+	else if ($(document.location.hash.replace("sel_","")).length) {
+		s=$(window.location.hash.replace("sel_","")).addClass('selected');
+		//s.addClass('selected').attr("href").replace("javascript:","");
+		s.click();
+		//eval(s);
 	}
 }
 //onload, we'll call the init function.
@@ -66,7 +65,7 @@ $(document).ready(function() {
 	//when a quote is called for, we're going to make it the selected quote.
 	function rm_false_hash () {
 		$("article.selected").removeClass("selected");
-		$(window.location.hash.replace("sel_","")).toggleClass("selected");
+		$(window.location.hash.replace("sel_","")).click();
 	}
 	window.onhashchange = rm_false_hash;
 	
@@ -132,10 +131,10 @@ $(document).ready(function() {
 
 function getLatestQuotes() {
 	$.ajax({
-		url: 'http://tenderneeds.appspot.com/quotes',
+		url: 'http://tenderneeds-hrd.appspot.com/quotes',
 		dataType:'jsonp',
 		success: function(data) {
-			//log(data);
+			//console.log(data);
 			var geo_features = [];
 			for (i=0; i<data.length; i++) {
 				quote = data[i];
@@ -177,6 +176,7 @@ function getLatestQuotes() {
 					$(this).addClass('selected');
 					document.location.hash="sel_"+$(this).attr("id");
 					$(this).find('object').show();
+					console.log("object", $(this).find('object'));
 					//Google Analytics Tracking for Clicking a Quote.
 					_gaq.push(['_trackEvent', 'Hash Changed', 'Clicked a Quote']);
 					//return false;
@@ -188,7 +188,7 @@ function getLatestQuotes() {
 				
 				geo_features.push({geometry: {coordinates: [quote.long, quote.lat], type: "Point"}, properties:{"marker_id":quote.id}});
 			}
-			console.info(geo_features);
+			//console.info(geo_features);
 			map.add(po.geoJson()
 			    .features(geo_features)
 				.on("load", loadPoints));
